@@ -1,0 +1,28 @@
+.BottomMenu {
+    background-color: #303030;
+    width: 100%;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.Btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+    border: none;
+    font-size: 11px;
+
+    &:focus {
+        border: none;
+        // background-color: blanchedalmond;
+    }
+}
+
+.Icon {
+    display: block;
+    margin-bottom: 7px;
+}

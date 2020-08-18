@@ -1,0 +1,27 @@
+.GreenBtn {
+    border: none;
+    position: absolute;
+    bottom: 70px;
+    right: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #33d54e;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+}
+
+.Icon {
+    display: block;
+    margin-bottom: 7px;
+}
+
+.RunningTaskContainer {
+    background-color: #303030;
+    height: 75px;
+    border-bottom: solid #8a8a8a 0.1px;
+}

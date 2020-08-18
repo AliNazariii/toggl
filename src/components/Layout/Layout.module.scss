@@ -1,0 +1,22 @@
+.LayoutContainer {
+    width: 100%;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    box-sizing: border-box;
+    background-color: rgb(116, 116, 116);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ContentContainer {
+    max-width: 500px;
+    width: 100%;
+    background-color: #1e1e1e;
+    height: 100%;
+}
+
+.FooterContainer {
+    max-width: 500px;
+    width: 100%;
+}
