@@ -8,7 +8,7 @@ interface Props {
 
 const RunningTaskContainer = ({ running }: Props) => {
 	return(
-		<div className={Styles.RunningTaskContainer} style={{ backgroundColor: running ? "#303030" : "#1e1e1e" }}>
+		<div className={Styles.RunningTaskContainer} style={{ backgroundColor: running ? "#303030" : "transparent" }}>
 			<GreenBtn />
 		</div>
 	)

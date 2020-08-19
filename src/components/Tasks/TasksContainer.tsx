@@ -7,14 +7,14 @@ type Task = {
     at: string | Date,
     billable: boolean,
     description: string,
-    duration: Int16Array,
+    duration: number,
     duronly: boolean,
     guid: string,
-    id: Int16Array,
+    id: number,
     start: string | Date,
     stop: string | Date,
-    uid: Int16Array,
-    wid: Int16Array
+    uid: number,
+    wid: number
 }
 
 const TasksContainer = () => {
