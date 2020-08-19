@@ -1,0 +1,31 @@
+.TaskContainer {
+    width: 100%;
+    height: 70px;
+    background-color: #303030;
+    border-bottom: solid #444444 0.1px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.DescriptionBlock {
+    display: flex;
+    margin: 20px;
+
+    .Title {
+        color: #8a8a8a;
+    }
+}
+
+.TimePlayBlock {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    .Duration {
+        color: #ffffff;
+        margin: 0 0 5px 0;
+    }
+}
