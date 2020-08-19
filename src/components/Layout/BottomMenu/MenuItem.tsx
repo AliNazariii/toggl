@@ -13,12 +13,11 @@ const MenuItem = ({ title, isActive }: Props) => {
 		title === 'Timer' ? faClock : 
 		title === 'Setting' ? faCog : faChartBar;
 
-	const color: string = isActive ? '#3e84dc' : '#8a8a8a';
+	// const color: number = isActive ? 1 : 0;
 	
 	return(
-		<button className={Styles.Btn} style={{color: color}}>
+		<button className={Styles.Btn}>
 			<FontAwesomeIcon 
-				color={color} 
 				className={Styles.Icon} 
 				icon={icon} 
 				size="lg" 

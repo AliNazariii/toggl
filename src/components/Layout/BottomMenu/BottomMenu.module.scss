@@ -11,14 +11,25 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: #8a8a8a;
+    background-position: center;
+    transition: background 0.8s;
 
     background-color: transparent;
     border: none;
+    outline:none;
     font-size: 11px;
 
     &:focus {
-        border: none;
-        // background-color: blanchedalmond;
+        color: #3e84dc;
+    }
+    &:hover {
+        background: #303030 radial-gradient(circle, transparent 1%, #303030 1%) center/15000%;
+    }
+    &:active {
+        background-color: #525252;
+        background-size: 100%;
+        transition: background 0s;
     }
 }
 
@@ -26,3 +37,7 @@
     display: block;
     margin-bottom: 7px;
 }
+
+
+  
+  
