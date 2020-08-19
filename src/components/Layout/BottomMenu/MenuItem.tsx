@@ -8,7 +8,7 @@ interface Props {
 	isActive: Boolean
 }
 
-const menuItem = ({ title, isActive }: Props) => {
+const MenuItem = ({ title, isActive }: Props) => {
 	const icon: typeof faClock = 
 		title === 'Timer' ? faClock : 
 		title === 'Setting' ? faCog : faChartBar;
@@ -28,4 +28,4 @@ const menuItem = ({ title, isActive }: Props) => {
 	)
 }
 
-export default menuItem;
+export default MenuItem;

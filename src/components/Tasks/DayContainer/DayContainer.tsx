@@ -1,21 +1,22 @@
 import React from 'react';
 import Styles from './DayContainer.module.scss';
 import Task from '../Task/Task';
+import moment from 'moment';
 
 interface Props {
-    date: Date
+    day: string,
+    data: []
 }
-const dayContainer = ({ date }: Props) => {
+const DayContainer = ({ day, data }: Props) => {
     return(
         <div className={Styles.DayContainer}>
             <div className={Styles.DayContainerHeadings}>
-                <h5 className={Styles.DayTitle}>Today</h5>
+                <h5 className={Styles.DayTitle}>{moment().format('YYYY-MM-DD') === day ? 'Today' : moment(day).format('ddd, MMM DD')}</h5>
                 <h6 className={Styles.DayTime}>1:01:23</h6>
             </div>
-            <Task />
-            <Task />
+            {data.map((task, index) => <Task key={index} data={task} /> )}
         </div>
     )
 }
 
-export default dayContainer;
+export default DayContainer;

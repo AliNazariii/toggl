@@ -6,7 +6,7 @@ interface Props {
 	running: Boolean
 }
 
-const runningTaskContainer = ({ running }: Props) => {
+const RunningTaskContainer = ({ running }: Props) => {
 	return(
 		<div className={Styles.RunningTaskContainer} style={{ backgroundColor: running ? "#303030" : "#1e1e1e" }}>
 			<GreenBtn />
@@ -14,4 +14,4 @@ const runningTaskContainer = ({ running }: Props) => {
 	)
 }
 
-export default runningTaskContainer;
+export default RunningTaskContainer;

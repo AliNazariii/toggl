@@ -10,7 +10,7 @@ window.addEventListener('resize', () => {
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
 
-const layout: FunctionComponent = ({ children }) => {
+const Layout: FunctionComponent = ({ children }) => {
   return(
     <div className={Styles.LayoutContainer}>
       <div className={Styles.ContentContainer}>
@@ -24,4 +24,4 @@ const layout: FunctionComponent = ({ children }) => {
   )
 }
 
-export default layout;
+export default Layout;

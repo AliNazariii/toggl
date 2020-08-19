@@ -2,7 +2,7 @@ import React from 'react';
 import Styles from './BottomMenu.module.scss';
 import MenuItem from './MenuItem';
 
-const bottomMenu = () => {
+const BottomMenu = () => {
 	return(
 		<div className={Styles.BottomMenu}>
 			<MenuItem title="Reports" isActive={false} />
@@ -12,4 +12,4 @@ const bottomMenu = () => {
 	)
 }
 
-export default bottomMenu;
+export default BottomMenu;

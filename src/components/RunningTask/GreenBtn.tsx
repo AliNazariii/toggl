@@ -3,7 +3,7 @@ import Styles from './RunningTask.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
-const greenBtn = () => {
+const GreenBtn = () => {
 	return(
 		<button className={Styles.GreenBtn}>
 			<FontAwesomeIcon style={{marginLeft: "3px"}} color="#ffffff" size="lg" icon={faPlay} />
@@ -11,4 +11,4 @@ const greenBtn = () => {
 	)
 }
 
-export default greenBtn;
+export default GreenBtn;
