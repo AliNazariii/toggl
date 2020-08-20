@@ -35,7 +35,20 @@ const TasksContainer = () => {
             allTasks.forEach((task) => {
                 if (tasks.has(moment(task.stop).format('YYYY-MM-DD'))) {
                     let mapTemp = tasks;
-                    mapTemp.set(moment(task.stop).format('YYYY-MM-DD'), [...tasks.get(moment(task.stop).format('YYYY-MM-DD')), task])
+
+                    let dayTasks = tasks.get(moment(task.stop).format('YYYY-MM-DD'));
+                    let thisTask = dayTasks.find((item: Task) => task.description === item.description);
+                    if (thisTask) {
+                        for (let i of dayTasks) {
+                            if (i.id === thisTask.id) {
+                                i.duration += task.duration;
+                                break;
+                            }
+                        }
+                        mapTemp.set(moment(task.stop).format('YYYY-MM-DD'), [...dayTasks])
+                    } else {
+                        mapTemp.set(moment(task.stop).format('YYYY-MM-DD'), [...tasks.get(moment(task.stop).format('YYYY-MM-DD')), task])
+                    }
                     setTasks(mapTemp);
                 } else {
                     tasks.set(moment(task.stop).format('YYYY-MM-DD'), [task])
