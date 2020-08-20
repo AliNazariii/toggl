@@ -25,7 +25,8 @@ const TasksContainer = () => {
             method: 'GET',
             redirect: 'follow',
             headers: new Headers({
-                "Authorization": `Basic ${Buffer.from(`b8a34732a49b28401bee4f8619dce939:api_token`).toString('base64')}` 
+                "Authorization": `Basic ${Buffer.from(`b8a34732a49b28401bee4f8619dce939:api_token`).toString('base64')}`,
+                "Content-Type": "application/json"
         })})
         .then(response => response.text())
         .then(result => {

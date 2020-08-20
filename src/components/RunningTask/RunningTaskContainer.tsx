@@ -1,15 +1,15 @@
 import React from 'react';
 import Styles from './RunningTask.module.scss';
-import GreenBtn from './GreenBtn';
+import Button from './Button';
 
 interface Props {
-	running: Boolean
+	running: boolean
 }
 
 const RunningTaskContainer = ({ running }: Props) => {
 	return(
 		<div className={Styles.RunningTaskContainer} style={{ backgroundColor: running ? "#303030" : "transparent" }}>
-			<GreenBtn />
+			<Button running={running} />
 		</div>
 	)
 }
