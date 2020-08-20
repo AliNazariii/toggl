@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import runningTask from './runningTask';
+import taskDetails from './taskDetails';
 
 const appReducers = combineReducers({
-    runningTask
+    runningTask,
+    taskDetails
 })
 
 export default appReducers;

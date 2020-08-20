@@ -27,19 +27,18 @@ const DayContainer = ({ day, data }: Props) => {
                 <h5 className={Styles.DayTitle}>{moment().format('YYYY-MM-DD') === day ? 'Today' : moment(day).format('ddd, MMM DD')}</h5>
                 <h6 className={Styles.DayTime}>{moment.utc(duration * 1000).format('HH:mm:ss')}</h6>
             </div>
-            <SwipeableList>
+            <SwipeableList threshold={0.45}>
                 {data.map((task, index) =>
                     <SwipeableListItem
                         key={index}
                         swipeLeft={{
-                            content: <div>Revealed content during swipe</div>,
+                            content: <div className={Styles.SwipeDelete}>Delete</div>,
                             action: () => console.info('swipe action triggered')
                         }}
                         swipeRight={{
-                            content: <div>Revealed content during swipe</div>,
+                            content: <div className={Styles.SwipeStart}>Continue</div>,
                             action: () => console.info('swipe action triggered')
                         }}
-                        onSwipeProgress={progress => console.info(`Swipe progress: ${progress}%`)}
                     >
                         <Task data={task} />
                     </SwipeableListItem>

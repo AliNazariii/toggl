@@ -1,0 +1,15 @@
+.DetailsContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    overflow: hidden;
+    background-color: #1e1e1e; 
+    transition: all 1s;
+    z-index: 10;
+}
+
+.DetailsContainer.DetailsClose {
+    top: 100%;
+    height: 0;
+}

@@ -15,3 +15,24 @@
 .DayTime {
     color: #ffffff;
 }
+
+.SwipeDelete {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    color: #ffffff;
+    background-color: #ff3333;
+    padding: 0 20px 0 0;
+}
+
+.SwipeStart {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #ffffff;
+    background-color: #33d54e;
+    padding: 0 0 0 20px;
+}
