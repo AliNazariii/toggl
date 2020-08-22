@@ -5,16 +5,11 @@ import moment from 'moment';
 import { SwipeableList, SwipeableListItem } from '@sandstreamdev/react-swipeable-list';
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 import { useDispatch } from 'react-redux';
+import { TaskType } from '../../../reducers/tasks';
+
 interface Props {
     day: string,
-    data: [
-        {
-            duration: number,
-            description: string,
-            id: number[],
-            counter: number
-        }
-    ]
+    data: Array<TaskType>
 }
 const DayContainer = ({ day, data }: Props) => {
     const [duration, setDuration] = useState(0);

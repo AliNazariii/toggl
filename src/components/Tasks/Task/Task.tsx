@@ -4,14 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
+import { TaskType } from '../../../reducers/tasks';
 
 interface Props {
-    data: {
-        duration: number,
-        description: string,
-        id: number[],
-        counter: number
-    }
+    data: TaskType
 }
 
 const Task = ({ data }: Props) => { 

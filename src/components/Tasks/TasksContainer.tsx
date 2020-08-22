@@ -2,25 +2,19 @@ import React, { useState, useEffect } from 'react';
 import Styles from './Tasks.module.scss';
 import DayContainer from './DayContainer/DayContainer';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { TaskType } from '../../reducers/tasks'
 
-type Task = {
-    at: string | Date,
-    billable: boolean,
-    description: string,
-    duration: number,
-    duronly: boolean,
-    guid: string,
-    id: number | number[],
-    start: string | Date,
-    stop: string | Date,
-    uid: number,
-    wid: number,
-    counter: number
+interface State {
+	tasks: {
+		tasks: Map<string, Array<TaskType>>
+	}
 }
 
 const TasksContainer = () => {
-    const [tasks, setTasks] = useState(new Map());
     const [loading, setLoad] = useState(true)
+    const dispatch = useDispatch();
+    const tasks = useSelector((state: State) => state.tasks.tasks);
     useEffect(() => {
         fetch('https://www.toggl.com/api/v8/time_entries', {
             method: 'GET',
@@ -31,14 +25,15 @@ const TasksContainer = () => {
         })})
         .then(response => response.text())
         .then(result => {
-            let allTasks: Array<Task> = JSON.parse(result);
+            let allTasks: Array<TaskType> = JSON.parse(result);
             allTasks.reverse();
+            let tasks = new Map();
             allTasks.forEach((task) => {
                 if (tasks.has(moment(task.stop).format('YYYY-MM-DD'))) {
                     let mapTemp = tasks;
 
                     let dayTasks = tasks.get(moment(task.stop).format('YYYY-MM-DD'));
-                    let thisTask = dayTasks.find((item: Task) => task.description === item.description);
+                    let thisTask = dayTasks.find((item: TaskType) => task.description === item.description);
                     if (thisTask) {
                         for (let i of dayTasks) {
                             if (i.id === thisTask.id) {
@@ -52,20 +47,23 @@ const TasksContainer = () => {
                     } else {
                         mapTemp.set(moment(task.stop).format('YYYY-MM-DD'), [...tasks.get(moment(task.stop).format('YYYY-MM-DD')), { ...task, counter: 1, id: [task.id] }])
                     }
-                    setTasks(mapTemp);
+                    tasks = mapTemp;
                 } else {
                     tasks.set(moment(task.stop).format('YYYY-MM-DD'), [{ ...task, counter: 1, id: [task.id] }])
                 }
             })
+            dispatch({ type: 'SET_TASKS', tasks: tasks });
             setLoad(false)
         })
         .catch(e => console.log(e))
-    }, [tasks])
+    }, [])
 
     return(
         <div className={Styles.TasksContainer}>
             {loading ? <h1>load</h1> : 
-                [...tasks.keys()].map((day, index) => <DayContainer key={index} day={day} data={tasks.get(day)} /> 
+                [...tasks.keys()].map((day, index) => (
+                    <DayContainer key={index} day={day} data={tasks.get(day)!} />
+                ) 
             )}
         </div>
     )
