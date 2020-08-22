@@ -10,7 +10,8 @@ interface Props {
         {
             duration: number,
             description: string,
-            id: number
+            id: number,
+            counter: number
         }
     ]
 }

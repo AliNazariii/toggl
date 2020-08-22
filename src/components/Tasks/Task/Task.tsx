@@ -9,7 +9,8 @@ interface Props {
     data: {
         duration: number,
         description: string,
-        id: number
+        id: number,
+        counter: number
     }
 }
 
@@ -44,7 +45,12 @@ const Task = ({ data }: Props) => {
     return(
         <div className={Styles.TaskContainer}>
             <div className={Styles.DescriptionBlock} onClick={() => dispatch({ type: 'TOGGLE_OPENNING' })}>
-                <h5 className={Styles.Title}>{data.description}</h5>
+                {data.counter === 1 ? null : (
+                    <div className={Styles.Counter}>
+                        {data.counter}
+                    </div>
+                )}
+                <h5 className={Styles.Title}>{data.description || "Add Description"}</h5>
             </div>
             <div 
                 className={Styles.TimePlayBlock}
