@@ -8,12 +8,19 @@ interface Props {
 	running: boolean
 }
 const GreenBtn = ({ running }: Props) => {
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
+	const handleToggle = () => {
+		if (running) {
+			console.log(1)
+		}
+		dispatch({ type: 'TOGGLE_RUNNING' });
+	}
+
 	return(
 		<button 
 			className={Styles.GreenBtn}
 			style={{ backgroundColor: running ? "#ff3333" : "#33d54e" }}
-			onClick={() => dispatch({ type: 'TOGGLE_RUNNING' })}
+			onClick={handleToggle}
 		>
 			<FontAwesomeIcon 
 				style={{marginLeft: running ? "0px" : "3px"}} 
