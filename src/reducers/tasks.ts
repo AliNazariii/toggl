@@ -1,6 +1,7 @@
 interface Action {
     tasks: Map<string, TaskType[]>,
-    type: string
+    type: string,
+    task: TaskType
 }
 
 export type TaskType = {
@@ -24,6 +25,15 @@ const tasks = (state = { tasks: new Map() }, action: Action) => {
             return {
                 tasks: action.tasks
             };
+        // case 'ADD_TASK':
+        //     return {
+        //         ...state.tasks,
+        //         action.task
+        //     };
+        // case 'REMOVE_TASK':
+        //     return {
+        //         tasks: action.tasks
+        //     };
         default:
             return state;
     };

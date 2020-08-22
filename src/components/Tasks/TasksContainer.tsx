@@ -3,8 +3,8 @@ import Styles from './Tasks.module.scss';
 import DayContainer from './DayContainer/DayContainer';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { TaskType } from '../../reducers/tasks'
-
+import { TaskType } from '../../reducers/tasks';
+import { setTasks } from '../../actions/tasks';
 interface State {
 	tasks: {
 		tasks: Map<string, Array<TaskType>>
@@ -52,7 +52,7 @@ const TasksContainer = () => {
                     tasks.set(moment(task.stop).format('YYYY-MM-DD'), [{ ...task, counter: 1, id: [task.id] }])
                 }
             })
-            dispatch({ type: 'SET_TASKS', tasks: tasks });
+            dispatch(setTasks(tasks));
             setLoad(false)
         })
         .catch(e => console.log(e))
