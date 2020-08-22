@@ -7,9 +7,10 @@ import { useDispatch } from 'react-redux'
 interface Props {
 	running: boolean,
 	start: string,
-	duration: number
+	duration: number,
+	description: string
 }
-const GreenBtn = ({ running, start, duration }: Props) => {
+const GreenBtn = ({ running, start, duration, description }: Props) => {
 	const dispatch = useDispatch();
 	const handleToggle = () => {
 		if (running) {
@@ -22,7 +23,7 @@ const GreenBtn = ({ running, start, duration }: Props) => {
 				}),
 				body: JSON.stringify({
 					"time_entry": {
-						"description": '',
+						"description": description,
 						"created_with": "curl",
 						"duration": duration,
 						"start": start,
@@ -33,7 +34,6 @@ const GreenBtn = ({ running, start, duration }: Props) => {
 			.then(result => {
 				// let allTasks: Array<Task> = JSON.parse(result);
 				console.log(result)
-				// dispatch({ type: 'TOGGLE_RUNNING' })
 			})
 			.catch(e => console.log(e))
 		}

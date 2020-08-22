@@ -1,12 +1,14 @@
 interface Action {
-    type: string
+    type: string,
+    description: string
 }
 
-const runningTask = (state = { isRunning: false }, action: Action) => {
+const runningTask = (state = { isRunning: false, description: '' }, action: Action) => {
     switch (action.type) {
         case 'TOGGLE_RUNNING':
             return {
-                isRunning: !state.isRunning
+                isRunning: !state.isRunning,
+                description: action.description
             };
         default:
             return state;

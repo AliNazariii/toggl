@@ -6,21 +6,22 @@ import moment from 'moment';
 
 interface State {
 	runningTask: {
-		isRunning: boolean
+		isRunning: boolean,
+		description: string
 	}
 }
   
 const RunningTaskContainer = () => {
 	const dispatch = useDispatch()
 	const [timer, setTime] = useState(0)
-	const isRunning = useSelector((state: State) => state.runningTask.isRunning)
+	const state = useSelector((state: State) => state.runningTask)
 	let start = moment().format();
 	useEffect(() => {
 		start = moment().format();
 		setTime(0);
-	}, [isRunning]);
+	}, [state.isRunning]);
 	useEffect(() => {
-		if (!isRunning) return;
+		if (!state.isRunning) return;
 		const interval = setInterval(() => {
 			let tmp = timer;
 			setTime(tmp + 1);
@@ -30,18 +31,18 @@ const RunningTaskContainer = () => {
 	return(
 		<div 
 			className={Styles.RunningTaskContainer} 
-			style={{ backgroundColor: isRunning ? "#303030" : "transparent" }}
+			style={{ backgroundColor: state.isRunning ? "#303030" : "transparent" }}
 		>
-			{isRunning ? (
+			{state.isRunning ? (
 				<div 
 					className={Styles.DescriptionContainer}
 					onClick={() => dispatch({ type: 'TOGGLE_OPENNING' })}
 				>
 					<h3 className={Styles.Time}>{moment.utc(timer * 1000).format('HH:mm:ss')}</h3>
-					<p className={Styles.Description}>Add Description</p>
+					<p className={Styles.Description}>{state.description || "Add Description"}</p>
 				</div>
 			) : null}
-			<Button start={start} duration={timer} running={isRunning} />
+			<Button start={start} duration={timer} description={state.description} running={state.isRunning} />
 		</div>
 	)
 }

@@ -17,7 +17,7 @@ interface Props {
 const Task = ({ data }: Props) => { 
     const dispatch = useDispatch()
     const startTask = () => {
-        
+        dispatch({ type: 'TOGGLE_RUNNING', description: data.description });
     }
 
     return(
