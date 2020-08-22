@@ -22,19 +22,37 @@ const DayContainer = ({ day, data }: Props) => {
         setDuration(duration)
     }, [data])
 
+    const removeTask = (id: number) => {
+        fetch(`https://www.toggl.com/api/v8/time_entries/${id}`, {
+            method: 'DELETE',
+            redirect: 'follow',
+            headers: new Headers({
+                "Authorization": `Basic ${Buffer.from(`b8a34732a49b28401bee4f8619dce939:api_token`).toString('base64')}`,
+                "Content-Type": "application/json"
+            })
+        })
+        .then(response => response.text())
+        .then(result => {
+            // let allTasks: Array<Task> = JSON.parse(result);
+            console.log(result)
+            // dispatch({ type: 'TOGGLE_RUNNING' })
+        })
+        .catch(e => console.log(e))
+    }
+
     return(
         <div className={Styles.DayContainer}>
             <div className={Styles.DayContainerHeadings}>
                 <h5 className={Styles.DayTitle}>{moment().format('YYYY-MM-DD') === day ? 'Today' : moment(day).format('ddd, MMM DD')}</h5>
                 <h6 className={Styles.DayTime}>{moment.utc(duration * 1000).format('HH:mm:ss')}</h6>
             </div>
-            <SwipeableList threshold={0.45}>
+            <SwipeableList threshold={0.75}>
                 {data.map((task, index) =>
                     <SwipeableListItem
                         key={index}
                         swipeLeft={{
                             content: <div className={Styles.SwipeDelete}>Delete</div>,
-                            action: () => console.info('swipe action triggered')
+                            action: () => removeTask(task.id)
                         }}
                         swipeRight={{
                             content: <div className={Styles.SwipeStart}>Continue</div>,

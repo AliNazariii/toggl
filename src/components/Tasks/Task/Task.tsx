@@ -42,6 +42,7 @@ const Task = ({ data }: Props) => {
         // })
         // .catch(e => console.log(e))
     }
+
     return(
         <div className={Styles.TaskContainer}>
             <div className={Styles.DescriptionBlock} onClick={() => dispatch({ type: 'TOGGLE_OPENNING' })}>
