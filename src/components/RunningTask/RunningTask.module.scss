@@ -1,7 +1,16 @@
+.RunningTaskContainer {
+    height: 75px;
+    border-bottom: solid #444444 0.1px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 .GreenBtn {
     border: none;
     outline:none;
-    margin: 0 10px 0 0;
+    margin: 0 10px 0 10px;
 
     display: flex;
     flex-direction: column;
@@ -18,11 +27,18 @@
     margin-bottom: 7px;
 }
 
-.RunningTaskContainer {
-    height: 75px;
-    border-bottom: solid #444444 0.1px;
-
+.DescriptionContainer {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    height: 100%;
+    padding: 0 0 0 20px;
+
+    .Time {
+        color: #3e84dc;
+    }
+    .Description {
+        color: #8a8a8a;
+    }
 }
