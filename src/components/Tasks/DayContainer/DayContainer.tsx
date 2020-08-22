@@ -4,6 +4,7 @@ import Task from '../Task/Task';
 import moment from 'moment';
 import { SwipeableList, SwipeableListItem } from '@sandstreamdev/react-swipeable-list';
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
+import { useDispatch } from 'react-redux';
 interface Props {
     day: string,
     data: [
@@ -16,7 +17,8 @@ interface Props {
     ]
 }
 const DayContainer = ({ day, data }: Props) => {
-    const [duration, setDuration] = useState(0)
+    const [duration, setDuration] = useState(0);
+    const dispatch = useDispatch();
     useEffect(() => {
         let duration = data.map(task => task.duration).reduce((acc, duration) => acc + duration)
         setDuration(duration)
@@ -58,7 +60,7 @@ const DayContainer = ({ day, data }: Props) => {
                         }}
                         swipeRight={{
                             content: <div className={Styles.SwipeStart}>Continue</div>,
-                            action: () => console.info('swipe action triggered')
+                            action: () => dispatch({ type: 'TOGGLE_RUNNING', description: task.description })
                         }}
                     >
                         <Task data={task} />
