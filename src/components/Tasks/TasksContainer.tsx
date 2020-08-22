@@ -10,7 +10,7 @@ type Task = {
     duration: number,
     duronly: boolean,
     guid: string,
-    id: number,
+    id: number | number[],
     start: string | Date,
     stop: string | Date,
     uid: number,
@@ -44,16 +44,17 @@ const TasksContainer = () => {
                             if (i.id === thisTask.id) {
                                 i.duration += task.duration;
                                 i.counter += 1;
+                                i.id = [...i.id, task.id];
                                 break;
                             }
                         }
                         mapTemp.set(moment(task.stop).format('YYYY-MM-DD'), [...dayTasks])
                     } else {
-                        mapTemp.set(moment(task.stop).format('YYYY-MM-DD'), [...tasks.get(moment(task.stop).format('YYYY-MM-DD')), { ...task, counter: 1 }])
+                        mapTemp.set(moment(task.stop).format('YYYY-MM-DD'), [...tasks.get(moment(task.stop).format('YYYY-MM-DD')), { ...task, counter: 1, id: [task.id] }])
                     }
                     setTasks(mapTemp);
                 } else {
-                    tasks.set(moment(task.stop).format('YYYY-MM-DD'), [{ ...task, counter: 1 }])
+                    tasks.set(moment(task.stop).format('YYYY-MM-DD'), [{ ...task, counter: 1, id: [task.id] }])
                 }
             })
             setLoad(false)

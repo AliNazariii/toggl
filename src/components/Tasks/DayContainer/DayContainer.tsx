@@ -10,7 +10,7 @@ interface Props {
         {
             duration: number,
             description: string,
-            id: number,
+            id: number[],
             counter: number
         }
     ]
@@ -22,22 +22,24 @@ const DayContainer = ({ day, data }: Props) => {
         setDuration(duration)
     }, [data])
 
-    const removeTask = (id: number) => {
-        fetch(`https://www.toggl.com/api/v8/time_entries/${id}`, {
-            method: 'DELETE',
-            redirect: 'follow',
-            headers: new Headers({
-                "Authorization": `Basic ${Buffer.from(`b8a34732a49b28401bee4f8619dce939:api_token`).toString('base64')}`,
-                "Content-Type": "application/json"
+    const removeTask = (IDs: number[]) => {
+        for (let id of IDs) {
+            fetch(`https://www.toggl.com/api/v8/time_entries/${id}`, {
+                method: 'DELETE',
+                redirect: 'follow',
+                headers: new Headers({
+                    "Authorization": `Basic ${Buffer.from(`b8a34732a49b28401bee4f8619dce939:api_token`).toString('base64')}`,
+                    "Content-Type": "application/json"
+                })
             })
-        })
-        .then(response => response.text())
-        .then(result => {
-            // let allTasks: Array<Task> = JSON.parse(result);
-            console.log(result)
-            // dispatch({ type: 'TOGGLE_RUNNING' })
-        })
-        .catch(e => console.log(e))
+            .then(response => response.text())
+            .then(result => {
+                // let allTasks: Array<Task> = JSON.parse(result);
+                console.log(result)
+                // dispatch({ type: 'TOGGLE_RUNNING' })
+            })
+            .catch(e => console.log(e))
+        }
     }
 
     return(
