@@ -14,7 +14,9 @@ const RunningTaskContainer = () => {
 	const dispatch = useDispatch()
 	const [timer, setTime] = useState(0)
 	const isRunning = useSelector((state: State) => state.runningTask.isRunning)
+	let start = moment().format();
 	useEffect(() => {
+		start = moment().format();
 		setTime(0);
 	}, [isRunning]);
 	useEffect(() => {
@@ -39,7 +41,7 @@ const RunningTaskContainer = () => {
 					<p className={Styles.Description}>Add Description</p>
 				</div>
 			) : null}
-			<Button running={isRunning} />
+			<Button start={start} duration={timer} running={isRunning} />
 		</div>
 	)
 }
