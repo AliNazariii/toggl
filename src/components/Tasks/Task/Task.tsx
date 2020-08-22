@@ -42,16 +42,19 @@ const Task = ({ data }: Props) => {
         // .catch(e => console.log(e))
     }
     return(
-        <div className={Styles.TaskContainer} onClick={() => dispatch({ type: 'TOGGLE_OPENNING' })}>
-            <div className={Styles.DescriptionBlock}>
+        <div className={Styles.TaskContainer}>
+            <div className={Styles.DescriptionBlock} onClick={() => dispatch({ type: 'TOGGLE_OPENNING' })}>
                 <h5 className={Styles.Title}>{data.description}</h5>
             </div>
-            <div className={Styles.TimePlayBlock}>
+            <div 
+                className={Styles.TimePlayBlock}
+                onClick={startTask}
+            >
                 <h5 className={Styles.Duration}>{moment.utc(data.duration * 1000).format('HH:mm:ss')}</h5>
                 <FontAwesomeIcon 
                     color="#8a8a8a" 
                     icon={faPlay} 
-                    onClick={startTask}
+                    className={Styles.Icon}
                 />
             </div>
         </div>
