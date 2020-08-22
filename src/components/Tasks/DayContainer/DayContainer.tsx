@@ -6,6 +6,7 @@ import { SwipeableList, SwipeableListItem } from '@sandstreamdev/react-swipeable
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 import { useDispatch } from 'react-redux';
 import { TaskType } from '../../../reducers/tasks';
+import { removeTask } from '../../../actions/tasks';
 
 interface Props {
     day: string,
@@ -19,8 +20,8 @@ const DayContainer = ({ day, data }: Props) => {
         setDuration(duration)
     }, [data])
 
-    const removeTask = (IDs: number[]) => {
-        for (let id of IDs) {
+    const handleSwipeLeft = (task: TaskType) => {
+        for (let id of task.id) {
             fetch(`https://www.toggl.com/api/v8/time_entries/${id}`, {
                 method: 'DELETE',
                 redirect: 'follow',
@@ -29,14 +30,10 @@ const DayContainer = ({ day, data }: Props) => {
                     "Content-Type": "application/json"
                 })
             })
-            .then(response => response.text())
-            .then(result => {
-                // let allTasks: Array<Task> = JSON.parse(result);
-                console.log(result)
-                // dispatch({ type: 'TOGGLE_RUNNING' })
-            })
+            .then(response => console.log(response.text()))
             .catch(e => console.log(e))
         }
+        dispatch(removeTask(task))
     }
 
     return(
@@ -51,7 +48,7 @@ const DayContainer = ({ day, data }: Props) => {
                         key={index}
                         swipeLeft={{
                             content: <div className={Styles.SwipeDelete}>Delete</div>,
-                            action: () => removeTask(task.id)
+                            action: () => handleSwipeLeft(task)
                         }}
                         swipeRight={{
                             content: <div className={Styles.SwipeStart}>Continue</div>,

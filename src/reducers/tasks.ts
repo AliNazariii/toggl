@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 interface Action {
     tasks: Map<string, TaskType[]>,
     type: string,
@@ -30,10 +32,21 @@ const tasks = (state = { tasks: new Map() }, action: Action) => {
         //         ...state.tasks,
         //         action.task
         //     };
-        // case 'REMOVE_TASK':
-        //     return {
-        //         tasks: action.tasks
-        //     };
+        case 'REMOVE_TASK':
+            console.log(state.tasks)
+            let tempTasks = state.tasks;
+            let dayTasks = tempTasks.get(moment(action.task.stop).format('YYYY-MM-DD'));
+            if (dayTasks.length === 1) {
+                tempTasks.delete(moment(action.task.stop).format('YYYY-MM-DD'));
+            } else {
+                let index = dayTasks.findIndex((item: TaskType) => item.id === action.task.id);
+                dayTasks.splice(index, 1);
+                tempTasks.set(moment(action.task.stop).format('YYYY-MM-DD'), dayTasks);
+            }
+            return {
+                ...state,
+                tasks: tempTasks
+            };
         default:
             return state;
     };

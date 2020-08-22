@@ -14,7 +14,7 @@ interface State {
 const TasksContainer = () => {
     const [loading, setLoad] = useState(true)
     const dispatch = useDispatch();
-    const tasks = useSelector((state: State) => state.tasks.tasks);
+    const tasksState = useSelector((state: State) => state.tasks);
     useEffect(() => {
         fetch('https://www.toggl.com/api/v8/time_entries', {
             method: 'GET',
@@ -61,8 +61,8 @@ const TasksContainer = () => {
     return(
         <div className={Styles.TasksContainer}>
             {loading ? <h1>load</h1> : 
-                [...tasks.keys()].map((day, index) => (
-                    <DayContainer key={index} day={day} data={tasks.get(day)!} />
+                [...tasksState.tasks.keys()].map((day, index) => (
+                    <DayContainer key={index} day={day} data={tasksState.tasks.get(day)!} />
                 ) 
             )}
         </div>
