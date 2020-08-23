@@ -3,6 +3,8 @@ import Styles from './RunningTask.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux'
+import { addTask } from '../../actions/tasks';
+import { TaskType } from '../../reducers/tasks';
 
 interface Props {
 	running: boolean,
@@ -32,8 +34,8 @@ const GreenBtn = ({ running, start, duration, description }: Props) => {
 			})
 			.then(response => response.text())
 			.then(result => {
-				// let allTasks: Array<Task> = JSON.parse(result);
-				console.log(result)
+				let data: { data: TaskType } = JSON.parse(result)
+				dispatch(addTask(data.data));
 			})
 			.catch(e => console.log(e))
 		}

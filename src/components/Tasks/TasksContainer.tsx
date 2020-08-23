@@ -61,9 +61,8 @@ const TasksContainer = () => {
     return(
         <div className={Styles.TasksContainer}>
             {loading ? <h1>load</h1> : 
-                [...tasksState.tasks.keys()].map((day, index) => (
-                    <DayContainer key={index} day={day} data={tasksState.tasks.get(day)!} />
-                ) 
+                [...tasksState.tasks.keys()].sort((a, b) => moment(a) > moment(b) ? -1 : 1)
+                    .map((day, index) => <DayContainer key={index} day={day} data={tasksState.tasks.get(day)!} /> 
             )}
         </div>
     )

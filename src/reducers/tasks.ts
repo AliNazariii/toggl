@@ -18,24 +18,46 @@ export type TaskType = {
     stop: string,
     uid: number,
     wid: number,
-    counter: number
+    counter?: number
 }
 
 const tasks = (state = { tasks: new Map() }, action: Action) => {
+    let tempTasks = state.tasks;
+    let dayTasks = [];
     switch (action.type) {
         case 'SET_TASKS':
             return {
                 tasks: action.tasks
             };
-        // case 'ADD_TASK':
-        //     return {
-        //         ...state.tasks,
-        //         action.task
-        //     };
+        case 'ADD_TASK':
+            tempTasks = state.tasks;
+            if (tempTasks.has(moment(action.task.start).format('YYYY-MM-DD'))) {
+                let dayTasks = tempTasks.get(moment(action.task.stop).format('YYYY-MM-DD'));
+                let thisTask = dayTasks.find((item: TaskType) => action.task.description === item.description);
+                if (thisTask) {
+                    for (let i of dayTasks) {
+                        if (i.id === thisTask.id) {
+                            i.duration += action.task.duration;
+                            i.counter += 1;
+                            i.id = [...i.id, action.task.id];
+                            break;
+                        }
+                    }
+                    tempTasks.set(moment(action.task.stop).format('YYYY-MM-DD'), [...dayTasks])
+                } else {
+                    tempTasks.set(moment(action.task.stop).format('YYYY-MM-DD'), 
+                        [...tempTasks.get(moment(action.task.stop).format('YYYY-MM-DD')), { ...action.task, counter: 1, id: [action.task.id] }])
+                }
+            } else {
+                tempTasks.set(moment(action.task.stop).format('YYYY-MM-DD'), [{ ...action.task, counter: 1, id: [action.task.id] }])
+            }
+            return {
+                ...state,
+                tasks: tempTasks
+            };
         case 'REMOVE_TASK':
-            console.log(state.tasks)
-            let tempTasks = state.tasks;
-            let dayTasks = tempTasks.get(moment(action.task.stop).format('YYYY-MM-DD'));
+            tempTasks = state.tasks;
+            dayTasks = tempTasks.get(moment(action.task.stop).format('YYYY-MM-DD'));
             if (dayTasks.length === 1) {
                 tempTasks.delete(moment(action.task.stop).format('YYYY-MM-DD'));
             } else {
