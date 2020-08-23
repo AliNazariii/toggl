@@ -1,3 +1,5 @@
+$red-color: #ff3333;
+
 .LogoContainer {
     display: flex;
     justify-content: center;
@@ -12,7 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ff3333;
+    background-color: $red-color;
     width: 40px;
     height: 40px;
     border-radius: 50%;

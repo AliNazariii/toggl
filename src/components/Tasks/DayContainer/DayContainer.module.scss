@@ -1,3 +1,7 @@
+$title-color: #ffffff;
+$red-color: #ff3333;
+$green-color: #33d54e;
+
 .DayContainer {
     margin: 0 0 30px 0;
 }
@@ -9,11 +13,11 @@
 }
 
 .DayTitle {
-    color: #ffffff;
+    color: $title-color;
 }
 
 .DayTime {
-    color: #ffffff;
+    color: $title-color;
 }
 
 .SwipeDelete {
@@ -23,7 +27,7 @@
     justify-content: flex-end;
     width: 100%;
     color: #ffffff;
-    background-color: #ff3333;
+    background-color: $red-color;
     padding: 0 20px 0 0;
 }
 
@@ -33,6 +37,6 @@
     align-items: center;
     width: 100%;
     color: #ffffff;
-    background-color: #33d54e;
+    background-color: $green-color;
     padding: 0 0 0 20px;
 }
