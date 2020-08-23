@@ -1,12 +1,22 @@
+import { TaskType } from './tasks';
+
 interface Action {
-    type: string
+    type: string,
+    task: TaskType
 }
 
-const taskDetails = (state = { isOpen: false }, action: Action) => {
+const taskDetails = (state = { isOpen: false, task: {} }, action: Action) => {
     switch (action.type) {
-        case 'TOGGLE_OPENNING':
+        case 'OPEN_DETAILS':
             return {
-                isOpen: !state.isOpen
+                ...state,
+                isOpen: true,
+                task: action.task
+            };
+        case 'CLOSE_DETAILS':
+            return {
+                ...state,
+                isOpen: false
             };
         default:
             return state;

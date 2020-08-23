@@ -5,6 +5,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { TaskType } from '../../../reducers/tasks';
+import { openDetails } from '../../../actions/taskDetails';
 
 interface Props {
     data: TaskType
@@ -18,7 +19,7 @@ const Task = ({ data }: Props) => {
 
     return(
         <div className={Styles.TaskContainer}>
-            <div className={Styles.DescriptionBlock} onClick={() => dispatch({ type: 'TOGGLE_OPENNING' })}>
+            <div className={Styles.DescriptionBlock} onClick={() => dispatch(openDetails(data))}>
                 {data.counter === 1 ? null : (
                     <div className={Styles.Counter}>
                         {data.counter}

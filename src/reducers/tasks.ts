@@ -27,6 +27,7 @@ const tasks = (state = { tasks: new Map() }, action: Action) => {
     switch (action.type) {
         case 'SET_TASKS':
             return {
+                ...state,
                 tasks: action.tasks
             };
         case 'ADD_TASK':
