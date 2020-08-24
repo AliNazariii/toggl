@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Styles from './TaskDetails.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,13 +17,18 @@ interface State {
 const Details = () => { 
     const dispatch = useDispatch();
     const state = useSelector((state: State) => state);
-    const input = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
+    const [inputValue, setValue] = useState(state.taskDetails.task.description);
     const remove = () => {
         dispatch(removeTask(state.taskDetails.task))
         dispatch({ type: 'CLOSE_DETAILS' })
     }
     useEffect(() => {
-        input.current?.focus();
+        if (state.taskDetails.isOpen) {
+            inputRef.current?.focus();
+            setValue(state.taskDetails.task.description)
+        }
+
     }, [state.taskDetails.isOpen])
     return(
         <div className={[Styles.DetailsContainer, state.taskDetails.isOpen ? null : Styles.DetailsClose].join(' ')}>
@@ -38,9 +43,10 @@ const Details = () => {
             </div>
             <div className={Styles.DescriptionBlock}>
                 <input 
-                    ref={input}
-                    defaultValue={state.taskDetails.task.description}
-                    placeholder={state.taskDetails.task.description} 
+                    ref={inputRef}
+                    value={inputValue || ''} 
+                    onChange={(e) => setValue(e.target.value)}
+                    placeholder={state.taskDetails.task.description ? undefined : 'Add Description'}
                     type="text" 
                 />
             </div>
@@ -68,6 +74,7 @@ const Details = () => {
                     />
                     <h5>{`Delete ${state.taskDetails.task.counter === 1 ? 'this task' : `${state.taskDetails.task.counter} tasks`}`}</h5>
                 </div>
+                <div className={Styles.Divider} />
             </div>
         </div>
     )

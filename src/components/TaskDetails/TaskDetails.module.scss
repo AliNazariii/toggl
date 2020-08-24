@@ -2,6 +2,7 @@ $primary-container-dark-color: #1e1e1e;
 
 .DetailsContainer {
     position: fixed;
+    max-width: 500px;
     width: 100%;
     height: 100%;
     top: 0;
@@ -19,7 +20,7 @@ $primary-container-dark-color: #1e1e1e;
 .Top {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 25px;
     margin: 0 0 20px 0;
 
     .SaveBtn {
@@ -36,17 +37,17 @@ $primary-container-dark-color: #1e1e1e;
 .DescriptionBlock {
     margin: 0 0 20px 0;
     display: flex;
-    justify-content: flex-end;
-    padding: 0 20px 0 0;
+    padding: 0 25px 0 25px;
 
     input {
         background-color: transparent;
         color: #686868;
-        direction: rtl;
         outline: none;
         padding: 10px 0 10px 0;
         border: none;
+        font-size: 20px;
         box-sizing: border-box;
+        width: 100%;
     }
 
 }
@@ -54,7 +55,7 @@ $primary-container-dark-color: #1e1e1e;
 .StaticBlock {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 25px;
 
     h6 {
         color: #686868;
@@ -62,12 +63,12 @@ $primary-container-dark-color: #1e1e1e;
 }
 
 .OthersContainer {
-    padding: 20px;
+    padding: 25px;
 
     .OthersItemBlock {
         display: flex;
         align-items: center;
-        padding: 15px 0 15px 0;
+        padding: 25px 0 25px 0;
 
         h5 {
             color: #ff3333;
