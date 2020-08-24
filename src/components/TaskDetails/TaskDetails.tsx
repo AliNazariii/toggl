@@ -28,7 +28,6 @@ const Details = () => {
             inputRef.current?.focus();
             setValue(state.taskDetails.task.description)
         }
-
     }, [state.taskDetails.isOpen])
     return(
         <div className={[Styles.DetailsContainer, state.taskDetails.isOpen ? null : Styles.DetailsClose].join(' ')}>

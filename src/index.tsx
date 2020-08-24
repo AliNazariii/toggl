@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import AppReducers from './reducers'
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(AppReducers);
+const store = createStore(
+  AppReducers,
+  applyMiddleware(thunk)
+);
+export type AppDispatch = typeof store.dispatch
 
 ReactDOM.render(
   <React.StrictMode>

@@ -21,18 +21,6 @@ const DayContainer = ({ day, data }: Props) => {
     }, [data])
 
     const handleSwipeLeft = (task: TaskType) => {
-        for (let id of task.id) {
-            fetch(`https://www.toggl.com/api/v8/time_entries/${id}`, {
-                method: 'DELETE',
-                redirect: 'follow',
-                headers: new Headers({
-                    "Authorization": `Basic ${Buffer.from(`b8a34732a49b28401bee4f8619dce939:api_token`).toString('base64')}`,
-                    "Content-Type": "application/json"
-                })
-            })
-            .then(response => console.log(response.text()))
-            .catch(e => console.log(e))
-        }
         dispatch(removeTask(task))
     }
 
