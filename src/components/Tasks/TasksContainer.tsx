@@ -5,6 +5,9 @@ import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { TaskType } from '../../reducers/tasks';
 import { setTasks } from '../../actions/tasks';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMehBlank } from '@fortawesome/free-solid-svg-icons';
+
 interface State {
 	tasks: {
 		tasks: Map<string, Array<TaskType>>
@@ -12,7 +15,6 @@ interface State {
 }
 
 const TasksContainer = () => {
-    const [loading, setLoad] = useState(true)
     const dispatch = useDispatch();
     const tasksState = useSelector((state: State) => state.tasks);
     useEffect(() => {
@@ -53,14 +55,21 @@ const TasksContainer = () => {
                 }
             })
             dispatch(setTasks(tasks));
-            setLoad(false)
         })
         .catch(e => console.log(e))
     }, [])
 
     return(
         <div className={Styles.TasksContainer}>
-            {loading ? <h1>load</h1> : 
+            {[...tasksState.tasks.keys()].length === 0 ? 
+                <div className={Styles.EmptyContainer}>
+                    <FontAwesomeIcon 
+                        color="#8a8a8a"
+                        size="6x"
+                        icon={faMehBlank} 
+                    />
+                    <h4>There is no task.</h4>
+                </div> :
                 [...tasksState.tasks.keys()].sort((a, b) => moment(a) > moment(b) ? -1 : 1)
                     .map((day, index) => <DayContainer key={index} day={day} data={tasksState.tasks.get(day)!} /> 
             )}

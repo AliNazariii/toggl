@@ -1,2 +1,14 @@
 .TasksContainer {
 }
+
+.EmptyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    h4 {
+        margin: 10px 0 0 0;
+        color: #8a8a8a;
+    }
+}
