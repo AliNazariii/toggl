@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Styles from './TaskDetails.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes,faTrashAlt, faTag } from '@fortawesome/free-solid-svg-icons';
 import { TaskType } from '../../reducers/tasks';
 import moment from 'moment';
+import { removeTask } from '../../actions/tasks';
 
 interface State {
 	taskDetails: {
@@ -16,6 +17,14 @@ interface State {
 const Details = () => { 
     const dispatch = useDispatch();
     const state = useSelector((state: State) => state);
+    const input = useRef<HTMLInputElement>(null);
+    const remove = () => {
+        dispatch(removeTask(state.taskDetails.task))
+        dispatch({ type: 'CLOSE_DETAILS' })
+    }
+    useEffect(() => {
+        input.current?.focus();
+    }, [state.taskDetails.isOpen])
     return(
         <div className={[Styles.DetailsContainer, state.taskDetails.isOpen ? null : Styles.DetailsClose].join(' ')}>
             <div className={Styles.Top}>
@@ -28,7 +37,12 @@ const Details = () => {
                 <button className={Styles.SaveBtn} onClick={() => dispatch({ type: 'CLOSE_DETAILS' })}>Save</button>
             </div>
             <div className={Styles.DescriptionBlock}>
-                <input type="text" />
+                <input 
+                    ref={input}
+                    defaultValue={state.taskDetails.task.description}
+                    placeholder={state.taskDetails.task.description} 
+                    type="text" 
+                />
             </div>
             <div className={Styles.StaticBlock}>
                 <h6>
@@ -46,12 +60,11 @@ const Details = () => {
                     />
                 </div>
                 <div className={Styles.Divider} />
-                <div className={Styles.OthersItemBlock}>    
+                <div className={Styles.OthersItemBlock} onClick={remove}>    
                     <FontAwesomeIcon 
                         color="#8a8a8a"
                         size="lg"
                         icon={faTrashAlt} 
-                        // onClick={() => dispatch({ type: 'TOGGLE_OPENNING' })}
                     />
                     <h5>{`Delete ${state.taskDetails.task.counter === 1 ? 'this task' : `${state.taskDetails.task.counter} tasks`}`}</h5>
                 </div>
