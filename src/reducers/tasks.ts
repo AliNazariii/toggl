@@ -32,8 +32,8 @@ const tasks = (state = { tasks: new Map() }, action: Action) => {
             };
         case 'ADD_TASK':
             tempTasks = state.tasks;
-            if (tempTasks.has(moment(action.task.start).format('YYYY-MM-DD'))) {
-                let dayTasks = tempTasks.get(moment(action.task.stop).format('YYYY-MM-DD'));
+            if (tempTasks.has(moment(action.task.stop).format('YYYY-MM-DD'))) {
+                dayTasks = tempTasks.get(moment(action.task.stop).format('YYYY-MM-DD'));
                 let thisTask = dayTasks.find((item: TaskType) => action.task.description === item.description);
                 if (thisTask) {
                     for (let i of dayTasks) {
@@ -70,6 +70,19 @@ const tasks = (state = { tasks: new Map() }, action: Action) => {
                 ...state,
                 tasks: tempTasks
             };
+        case 'UPDATE_TASK':
+            tempTasks = state.tasks;
+            dayTasks = tempTasks.get(moment(action.task.stop).format('YYYY-MM-DD'));
+            dayTasks.forEach((element: TaskType) => {
+                if (action.task.id === element.id) {
+                    element.description = action.task.description
+                }
+            });
+            tempTasks.set(moment(action.task.stop).format('YYYY-MM-DD'), [...dayTasks])
+            return {
+                ...state,
+                tasks: tempTasks
+            }
         default:
             return state;
     };

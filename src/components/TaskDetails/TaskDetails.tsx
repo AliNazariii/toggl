@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes,faTrashAlt, faTag } from '@fortawesome/free-solid-svg-icons';
 import { TaskType } from '../../reducers/tasks';
 import moment from 'moment';
-import { removeTask } from '../../actions/tasks';
+import { removeTask, updateTask } from '../../actions/tasks';
 
 interface State {
 	taskDetails: {
@@ -20,8 +20,12 @@ const Details = () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [inputValue, setValue] = useState(state.taskDetails.task.description);
     const remove = () => {
-        dispatch(removeTask(state.taskDetails.task))
-        dispatch({ type: 'CLOSE_DETAILS' })
+        dispatch(removeTask(state.taskDetails.task));
+        dispatch({ type: 'CLOSE_DETAILS' });
+    }
+    const save = () => {
+        dispatch(updateTask(state.taskDetails.task, inputValue));
+        dispatch({ type: 'CLOSE_DETAILS' });
     }
     useEffect(() => {
         if (state.taskDetails.isOpen) {
@@ -38,7 +42,7 @@ const Details = () => {
                     icon={faTimes} 
                     onClick={() => dispatch({ type: 'CLOSE_DETAILS' })}
                 />
-                <button className={Styles.SaveBtn} onClick={() => dispatch({ type: 'CLOSE_DETAILS' })}>Save</button>
+                <button className={Styles.SaveBtn} onClick={save}>Save</button>
             </div>
             <div className={Styles.DescriptionBlock}>
                 <input 

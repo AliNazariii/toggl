@@ -111,3 +111,37 @@ export const remove = (task: TaskType) => {
         task: task
     };
 };
+
+export const updateTask = (task: TaskType, description: string) => {
+    return (dispatch: AppDispatch) => {
+        for (let id of task.id) {
+            fetch(`https://www.toggl.com/api/v8/time_entries/${id}`, {
+                method: 'PUT',
+                redirect: 'follow',
+                headers: new Headers({
+                    "Authorization": `Basic ${Buffer.from(`b8a34732a49b28401bee4f8619dce939:api_token`).toString('base64')}`,
+                    "Content-Type": "application/json"
+                }),
+                body: JSON.stringify({
+                    "time_entry": {
+                        "description": description,
+                        "created_with": "curl",
+                    }
+                })  
+            })
+            .then(response => response.text())
+            .catch(e => console.log(e))
+        }
+        dispatch(update({
+            ...task,
+            description: description
+        }));
+    }
+};
+
+export const update = (task: TaskType) => {
+    return {
+        type: 'UPDATE_TASK',
+        task: task
+    };
+};
