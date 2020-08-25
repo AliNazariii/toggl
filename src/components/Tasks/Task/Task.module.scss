@@ -17,7 +17,6 @@ $gray-color: #8a8a8a;
     display: flex;
     align-items: center;
     flex-grow: 1;
-
     padding: 20px 10px 20px 20px;
     height: 100%;
     .Counter {
@@ -30,9 +29,13 @@ $gray-color: #8a8a8a;
         border-radius: 7px;
         color: $gray-color;
         margin: 0 10px 0 0;
+        p {
+            margin: 5px 0 0 0;
+        }
     }
     .Title {
         color: $gray-color;
+        margin: 4px 0 0 0;
     }
 }
 
@@ -43,7 +46,7 @@ $gray-color: #8a8a8a;
     align-items: flex-end;
     .Duration {
         color: #ffffff;
-        margin: 0 0 10px 0;
+        margin: 0 0 7px 0;
     }
     .Icon {
         margin-right: 5px;

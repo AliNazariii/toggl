@@ -22,10 +22,10 @@ const Task = ({ data }: Props) => {
             <div className={Styles.DescriptionBlock} onClick={() => dispatch(openDetails(data))}>
                 {data.counter === 1 ? null : (
                     <div className={Styles.Counter}>
-                        {data.counter}
+                        <p>{data.counter}</p>
                     </div>
                 )}
-                <h5 className={Styles.Title}>{data.description || "Add Description"}</h5>
+                <p className={Styles.Title}>{data.description || "Add Description"}</p>
             </div>
             <div 
                 className={Styles.TimePlayBlock}

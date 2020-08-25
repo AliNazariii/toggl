@@ -23,7 +23,9 @@ const MenuItem = ({ title, isActive }: Props) => {
 				icon={icon} 
 				size="lg" 
 			/>
-			{title}
+			<p> 
+				{title}
+			</p>
 		</button>
 	)
 }
