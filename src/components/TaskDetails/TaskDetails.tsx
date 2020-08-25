@@ -29,7 +29,7 @@ const Details = () => {
     }
     useEffect(() => {
         if (state.taskDetails.isOpen) {
-            inputRef.current?.focus();
+            // inputRef.current?.focus();
             setValue(state.taskDetails.task.description)
         }
     }, [state.taskDetails.isOpen])
