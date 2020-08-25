@@ -60,15 +60,20 @@ const Details = () => {
                 <h6>{moment.utc(state.taskDetails.task.duration * 1000).format('HH:mm:ss')}</h6>
             </div>
             <div className={Styles.OthersContainer}>
-                <div className={Styles.OthersItemBlock}>    
+                {/* <div className={Styles.OthersItemBlock}>    
                     <FontAwesomeIcon 
                         color="#8a8a8a"
                         size="lg"
                         icon={faTag} 
-                        // onClick={() => dispatch({ type: 'TOGGLE_OPENNING' })}
                     />
+                    <select name="tags" multiple={true}>
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                    </select>
                 </div>
-                <div className={Styles.Divider} />
+                <div className={Styles.Divider} /> */}
                 <div className={Styles.OthersItemBlock} onClick={remove}>    
                     <FontAwesomeIcon 
                         color="#8a8a8a"

@@ -2,6 +2,7 @@ import React from 'react';
 import Styles from './BottomMenu.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faCog, faChartBar } from '@fortawesome/free-solid-svg-icons';
+import { inherits } from 'util';
 
 interface Props {
 	title: String,
@@ -13,10 +14,10 @@ const MenuItem = ({ title, isActive }: Props) => {
 		title === 'Timer' ? faClock : 
 		title === 'Setting' ? faCog : faChartBar;
 
-	// const color: number = isActive ? 1 : 0;
+	const color: string = isActive ? "#3e84dc" : "inherits";
 	
 	return(
-		<button className={Styles.Btn}>
+		<button className={Styles.Btn} style={{color: color}}>
 			<FontAwesomeIcon 
 				className={Styles.Icon} 
 				icon={icon} 
