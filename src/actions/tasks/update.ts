@@ -50,7 +50,7 @@ export const updateTask = (task: TaskType, description: string) => {
     }
 };
 
-export const updateTaskProject = (task: TaskType, projectID: number) => {
+export const updateTaskProject = (task: TaskType, projectID: number | undefined) => {
     return (dispatch: AppDispatch) => {
         for (let id of task.id!) {
             fetch(`https://www.toggl.com/api/v8/time_entries/${id}`, {

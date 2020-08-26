@@ -90,11 +90,11 @@ const tasks = (state = { tasks: new Map() }, action: TaskActionType) => {
             }
         case 'UPDATE_TASK_PROJECT':
             tempTasks = state.tasks;
-            const updatedTaskProject = action.task!;
+            const updatedTaskProject = action.task;
             dayTasks = tempTasks.get(moment(updatedTaskProject.stop).format('YYYY-MM-DD'));
             dayTasks.forEach((element: TaskType) => {
-                if (updatedTask.id === element.id) {
-                    element.pid = updatedTask.pid
+                if (updatedTaskProject.id === element.id) {
+                    element.pid = updatedTaskProject.pid
                 }
             });
             tempTasks.set(moment(updatedTaskProject.stop).format('YYYY-MM-DD'), [...dayTasks])

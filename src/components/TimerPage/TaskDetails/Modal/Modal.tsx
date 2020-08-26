@@ -17,8 +17,22 @@ function Modal() {
 		>
 			<div className={Styles.ModalContent}>
 				<h4>Select Project</h4>
-				{/* {state.projects.projects!.length > 0 ?
-					state.projects.projects!.map((item: ProjectType, index: number) => (
+				<div 
+					className={Styles.ItemContainer} 
+					onClick={() => {
+						dispatch(updateTaskProject(state.taskDetails.task, undefined));
+					}}
+				>
+					<input 
+						type="radio" 
+						name="project" 
+						onChange={() => console.log("No Project")}
+						checked={state.taskDetails.task.pid === undefined ? true : false} 
+					/>
+					<label>No Project</label>
+				</div>
+				{state.projects.projects.length > 0 ?
+					state.projects.projects.map((item: ProjectType, index: number) => (
 						<div 
 							className={Styles.ItemContainer} 
 							key={index}
@@ -28,12 +42,13 @@ function Modal() {
 						>
 							<input 
 								type="radio" 
-								name="Date" 
-								checked={state.projects.projects!.map((project: ProjectType) => project.id).includes(item.id)} 
+								name="project" 
+								onChange={() => console.log(item.name)}
+								checked={state.projects.projects.map((project: ProjectType) => project.id).includes(state.taskDetails.task.pid!)} 
 							/>
-							<label>{item}</label>
+							<label>{item.name}</label>
 						</div>
-				)): null }	 */}
+				)): null }	
 			</div>
         </div>
 	);

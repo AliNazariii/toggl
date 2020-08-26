@@ -28,7 +28,7 @@ const projects = (state = { projects: new Array<ProjectType>(), modal: false }, 
         case 'SET_PROJECTS':
             return {
                 ...state,
-                projects: action.projects
+                projects: [...action.projects]
             };
         case 'ADD_PROJECT':
             return {
