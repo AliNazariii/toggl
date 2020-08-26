@@ -2,12 +2,12 @@ interface Action {
     type: string,
 }
 
-const setting = (state = { theme: 'dark' }, action: Action) => {
+const setting = (state = { dateFormat: 'ddd, MMM DD' }, action: Action) => {
     switch (action.type) {
-        case 'SET_THEME':
+        case 'SET_DATE_FORMAT':
             return {
                 ...state,
-                theme: action.type,
+                dateFormat: action.type,
             };
         default:
             return state;

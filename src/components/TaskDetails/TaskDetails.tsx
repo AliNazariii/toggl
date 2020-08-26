@@ -3,20 +3,13 @@ import Styles from './TaskDetails.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes,faTrashAlt, faTag } from '@fortawesome/free-solid-svg-icons';
-import { TaskType } from '../../reducers/tasks';
+import { AppState } from '../../index';
 import moment from 'moment';
 import { removeTask, updateTask } from '../../actions/tasks';
 
-interface State {
-	taskDetails: {
-		isOpen: boolean,
-		task: TaskType
-	}
-}
-
 const Details = () => { 
     const dispatch = useDispatch();
-    const state = useSelector((state: State) => state);
+    const state = useSelector((state: AppState) => state);
     const inputRef = useRef<HTMLInputElement>(null);
     const [inputValue, setValue] = useState(state.taskDetails.task.description);
     const remove = () => {
@@ -24,7 +17,7 @@ const Details = () => {
         dispatch({ type: 'CLOSE_DETAILS' });
     }
     const save = () => {
-        dispatch(updateTask(state.taskDetails.task, inputValue));
+        dispatch(updateTask(state.taskDetails.task, inputValue!));
         dispatch({ type: 'CLOSE_DETAILS' });
     }
     useEffect(() => {

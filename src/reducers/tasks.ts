@@ -7,17 +7,17 @@ interface Action {
 }
 
 export type TaskType = {
-    at: string,
-    billable: boolean,
-    description: string,
+    at?: string,
+    billable?: boolean,
+    description?: string,
     duration: number,
-    duronly: boolean,
-    guid: string,
-    id: number[],
+    duronly?: boolean,
+    guid?: string,
+    id?: number[],
     start: string,
     stop: string,
-    uid: number,
-    wid: number,
+    uid?: number,
+    wid?: number,
     counter?: number
 }
 

@@ -2,19 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Styles from './RunningTask.module.scss';
 import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../../index';
 import moment from 'moment';
 
-interface State {
-	runningTask: {
-		isRunning: boolean,
-		description: string
-	}
-}
-  
 const RunningTaskContainer = () => {
 	const dispatch = useDispatch()
 	const [timer, setTime] = useState(0)
-	const state = useSelector((state: State) => state.runningTask)
+	const state = useSelector((state: AppState) => state.runningTask)
 	let start = moment().format();
 	useEffect(() => {
 		start = moment().format();

@@ -89,7 +89,7 @@ export const add = (task: TaskType) => {
 
 export const removeTask = (task: TaskType) => {
     return (dispatch: AppDispatch) => {
-        for (let id of task.id) {
+        for (let id of task.id!) {
             fetch(`https://www.toggl.com/api/v8/time_entries/${id}`, {
                 method: 'DELETE',
                 redirect: 'follow',
@@ -114,7 +114,7 @@ export const remove = (task: TaskType) => {
 
 export const updateTask = (task: TaskType, description: string) => {
     return (dispatch: AppDispatch) => {
-        for (let id of task.id) {
+        for (let id of task.id!) {
             fetch(`https://www.toggl.com/api/v8/time_entries/${id}`, {
                 method: 'PUT',
                 redirect: 'follow',

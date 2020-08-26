@@ -3,20 +3,14 @@ import Styles from './Tasks.module.scss';
 import DayContainer from './DayContainer/DayContainer';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { TaskType } from '../../reducers/tasks';
+import { AppState } from '../../index';
 import { fetchTasks } from '../../actions/tasks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMehBlank } from '@fortawesome/free-solid-svg-icons';
 
-interface State {
-	tasks: {
-		tasks: Map<string, Array<TaskType>>
-	}
-}
-
 const TasksContainer = () => {
     const dispatch = useDispatch();
-    const tasksState = useSelector((state: State) => state.tasks);
+    const tasksState = useSelector((state: AppState) => state.tasks);
     useEffect(() => {
         dispatch(fetchTasks());
     }, [])
