@@ -3,8 +3,8 @@ import Styles from './Tasks.module.scss';
 import DayContainer from './DayContainer/DayContainer';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../index';
-import { fetchTasks } from '../../actions/tasks';
+import { AppState } from '../../../index';
+import { fetchTasks } from '../../../actions/tasks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMehBlank } from '@fortawesome/free-solid-svg-icons';
 

@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { TaskType } from '../../../reducers/tasks';
-import { openDetails } from '../../../actions/taskDetails';
+import { TaskType } from '../../../../reducers/tasks';
+import { openDetails } from '../../../../actions/taskDetails';
 
 interface Props {
     data: TaskType

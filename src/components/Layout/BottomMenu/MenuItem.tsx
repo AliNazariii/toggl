@@ -15,9 +15,12 @@ const MenuItem = ({ title, isActive }: Props) => {
 		title === 'Setting' ? faCog : faChartBar;
 
 	const color: string = isActive ? "#3e84dc" : "inherits";
+	const link: string = 
+		title === 'Timer' ? '/' : 
+		title === 'Setting' ? '/setting' : '/report';
 	
 	return(
-		<Link to={`/${title}`} className={Styles.Link}>
+		<Link to={link} className={Styles.Link}>
 			<button className={Styles.Btn} style={{color: color}}>
 				<FontAwesomeIcon 
 					className={Styles.Icon} 

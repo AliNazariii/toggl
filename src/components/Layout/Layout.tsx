@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import Styles from './Layout.module.scss';
 import BottomMenu from './BottomMenu/BottomMenu';
-import RunningTaskContainer from '../RunningTask/RunningTaskContainer';
+import RunningTaskContainer from '../TimerPage/RunningTask/RunningTaskContainer';
 
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);

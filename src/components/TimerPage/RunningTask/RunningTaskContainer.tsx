@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Styles from './RunningTask.module.scss';
 import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../index';
+import { AppState } from '../../../index';
 import moment from 'moment';
 
 const RunningTaskContainer = () => {

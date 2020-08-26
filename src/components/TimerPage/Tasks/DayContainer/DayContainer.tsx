@@ -5,8 +5,8 @@ import moment from 'moment';
 import { SwipeableList, SwipeableListItem } from '@sandstreamdev/react-swipeable-list';
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 import { useDispatch } from 'react-redux';
-import { TaskType } from '../../../reducers/tasks';
-import { removeTask } from '../../../actions/tasks';
+import { TaskType } from '../../../../reducers/tasks';
+import { removeTask } from '../../../../actions/tasks';
 
 interface Props {
     day: string,
