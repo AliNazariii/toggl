@@ -1,21 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Styles from './Tasks.module.scss';
 import DayContainer from './DayContainer/DayContainer';
 import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { AppState } from '../../../reducers/index';
-import { fetchTasks } from '../../../actions/tasks/fetch';
-import { fetchProjects } from '../../../actions/projects/fetch';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMehBlank } from '@fortawesome/free-solid-svg-icons';
 
 const TasksContainer = () => {
-    const dispatch = useDispatch();
     const tasksState = useSelector((state: AppState) => state.tasks);
-    useEffect(() => {
-        dispatch(fetchProjects());
-        dispatch(fetchTasks());
-    }, [])
 
     return(
         <div className={Styles.TasksContainer}>

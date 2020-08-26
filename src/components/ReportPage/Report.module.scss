@@ -1,0 +1,49 @@
+.EmptyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    h4 {
+        margin: 10px 0 0 0;
+        color: #8a8a8a;
+    }
+}
+
+.ReportsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ChartContainer {
+    width: 90%;
+    border-radius: 2px;
+    background-color: #303030;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .Chart {
+        width: 60%;
+    }
+    
+}
+
+.ChartItem {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    .Duration {
+        color: #8a8a8a;
+    }
+    h5 {
+        padding: 0 15px 0 15px;
+    }
+}
+
+.Divider {
+    border-bottom: solid #444444 0.1px;
+    width: 100%;
+    height: 1px;
+}
