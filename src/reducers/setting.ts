@@ -4,7 +4,7 @@ interface Action {
 }
 const initialState = {
     dateFormat: 'ddd, MMM DD', 
-    durationFormat: 0,
+    durationFormat: 1,
     modal: {
         status: false,
         type: 'Duration'
@@ -19,7 +19,7 @@ const setting = (state = initialState, action: Action) => {
                 dateFormat: action.format,
                 modal: {
                     ...state.modal,
-                    status: !state.modal.status
+                    status: false
                 }
             };
         case 'SET_DURATION_FORMAT':
@@ -28,7 +28,7 @@ const setting = (state = initialState, action: Action) => {
                 durationFormat: action.format,
                 modal: {
                     ...state.modal,
-                    status: !state.modal.status
+                    status: false
                 }
             };
         case 'OPEN_MODAL':
@@ -36,7 +36,7 @@ const setting = (state = initialState, action: Action) => {
                 ...state,
                 modal: {
                     ...state.modal,
-                    status: !state.modal.status,
+                    status: true,
                     type: action.format
                 }
             };
@@ -45,7 +45,7 @@ const setting = (state = initialState, action: Action) => {
                 ...state,
                 modal: {
                     ...state.modal,
-                    status: !state.modal.status
+                    status: false
                 }
             }
         default:

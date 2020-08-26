@@ -19,7 +19,10 @@ function SettingItem({ item }: Props) {
         >
             <div className={Styles.Left}>
                 <h5>{item}</h5>
-                <h6>{item === "Date Format" ? `${state.dateFormat} format` : `${state.durationFormat} format`}</h6>
+                <h6>
+                    {item === "Date" ? `${state.dateFormat}` : 
+                        state.durationFormat === 0 ? "Classic (47:06 min)" : "Improved (0:47:06)"}
+                    </h6>
             </div>
             <FontAwesomeIcon color="#8a8a8a" icon={faAngleDown} />
         </div>

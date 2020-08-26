@@ -7,14 +7,10 @@ function SettingPage() {
 	return (
         <div className={Styles.SettingContainer}>
             <SettingItem item="Date" />
+            <div className={Styles.Divider} />
             <SettingItem item="Duration" />  
+            <div className={Styles.Divider} />
             <Modal />          
-            <select name="tags">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
-            </select>
         </div>
 	);
 }

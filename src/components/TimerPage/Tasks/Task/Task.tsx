@@ -3,16 +3,18 @@ import Styles from './Task.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { TaskType } from '../../../../reducers/tasks';
 import { openDetails } from '../../../../actions/taskDetails';
+import { AppState } from '../../../../reducers/index';
 
 interface Props {
     data: TaskType
 }
 
 const Task = ({ data }: Props) => { 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const state = useSelector((state: AppState) => state.setting);
     const startTask = () => {
         dispatch({ type: 'TOGGLE_RUNNING', description: data.description });
     }
@@ -31,7 +33,14 @@ const Task = ({ data }: Props) => {
                 className={Styles.TimePlayBlock}
                 onClick={startTask}
             >
-                <h5 className={Styles.Duration}>{moment.utc(data.duration * 1000).format('HH:mm:ss')}</h5>
+                <h5 className={Styles.Duration}>
+                    {data.duration < 60 ? (
+                        `${moment.utc(data.duration * 1000).format(state.durationFormat === 0 ? 'ss' : 'HH:mm:ss')} ${state.durationFormat === 0 ? "sec" : ""}`
+
+                    ) : (
+                        `${moment.utc(data.duration * 1000).format(state.durationFormat === 0 ? 'mm:ss' : 'HH:mm:ss')} ${state.durationFormat === 0 ? "min" : ""}`
+                    )}
+                </h5>
                 <FontAwesomeIcon 
                     color="#8a8a8a" 
                     icon={faPlay} 
