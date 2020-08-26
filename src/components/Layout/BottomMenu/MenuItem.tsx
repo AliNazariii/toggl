@@ -1,27 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Styles from './BottomMenu.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faCog, faChartBar } from '@fortawesome/free-solid-svg-icons';
-import { Link } from "react-router-dom";
-
+import { NavLink, useLocation } from "react-router-dom";
 interface Props {
-	title: String,
-	isActive: Boolean
+	title: String
 }
 
-const MenuItem = ({ title, isActive }: Props) => {
+const MenuItem = ({ title }: Props) => {
+	const location = useLocation();
 	const icon: typeof faClock = 
 		title === 'Timer' ? faClock : 
 		title === 'Setting' ? faCog : faChartBar;
-
-	const color: string = isActive ? "#3e84dc" : "inherits";
 	const link: string = 
 		title === 'Timer' ? '/' : 
 		title === 'Setting' ? '/setting' : '/report';
-	
+	const [isActive, setActive] = useState(false);
 	return(
-		<Link to={link} className={Styles.Link}>
-			<button className={Styles.Btn} style={{color: color}}>
+		<NavLink 
+			to={link} 
+			className={Styles.Link} 
+		>
+			<button className={Styles.Btn} style={{ color: location.pathname === link ? "#3e84dc": "#8a8a8a"}}>
 				<FontAwesomeIcon 
 					className={Styles.Icon} 
 					icon={icon} 
@@ -31,7 +31,7 @@ const MenuItem = ({ title, isActive }: Props) => {
 					{title}
 				</p>
 			</button>
-		</Link>
+		</NavLink>
 	)
 }
 

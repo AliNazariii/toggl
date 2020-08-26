@@ -5,9 +5,9 @@ import MenuItem from './MenuItem';
 const BottomMenu = () => {
 	return(
 		<div className={Styles.BottomMenu}>
-			<MenuItem title="Reports" isActive={false} />
-			<MenuItem title="Timer" isActive={true} />
-			<MenuItem title="Setting" isActive={false} />
+			<MenuItem title="Reports" />
+			<MenuItem title="Timer" />
+			<MenuItem title="Setting" />
 		</div>
 	)
 }
