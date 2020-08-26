@@ -1,0 +1,15 @@
+.SettingItemContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid #fff;
+    padding: 15px;
+    .Left {
+        h5 {
+            color: #ffffff;
+        }
+        h6 {
+            color: #8a8a8a;
+        }
+    }
+}
