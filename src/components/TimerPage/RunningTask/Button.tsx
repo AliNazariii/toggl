@@ -3,7 +3,7 @@ import Styles from './RunningTask.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux'
-import { addTask } from '../../../actions/tasks';
+import { addTask } from '../../../actions/tasks/add';
 
 interface Props {
 	running: boolean,

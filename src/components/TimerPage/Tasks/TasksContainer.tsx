@@ -4,7 +4,8 @@ import DayContainer from './DayContainer/DayContainer';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../reducers/index';
-import { fetchTasks } from '../../../actions/tasks';
+import { fetchTasks } from '../../../actions/tasks/fetch';
+import { fetchProjects } from '../../../actions/projects/fetch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMehBlank } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,6 +13,7 @@ const TasksContainer = () => {
     const dispatch = useDispatch();
     const tasksState = useSelector((state: AppState) => state.tasks);
     useEffect(() => {
+        dispatch(fetchProjects());
         dispatch(fetchTasks());
     }, [])
 

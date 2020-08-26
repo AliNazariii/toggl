@@ -1,10 +1,11 @@
 import moment from 'moment';
-
-interface Action {
-    tasks: Map<string, TaskType[]>,
-    type: string,
-    task?: TaskType
-}
+import { AddTaskActionType } from '../actions/tasks/add';
+import { UpdateTaskActionType } from '../actions/tasks/update';
+import { RemoveTaskActionType } from '../actions/tasks/remove';
+import { FetchTaskActionType } from '../actions/tasks/fetch';
+export type TaskActionType = 
+    | AddTaskActionType | UpdateTaskActionType 
+    | RemoveTaskActionType | FetchTaskActionType;
 
 export type TaskType = {
     at?: string,
@@ -18,10 +19,11 @@ export type TaskType = {
     stop: string,
     uid?: number,
     wid?: number,
-    counter?: number
+    counter?: number,
+    pid?: number
 }
 
-const tasks = (state = { tasks: new Map() }, action: Action) => {
+const tasks = (state = { tasks: new Map() }, action: TaskActionType) => {
     let tempTasks = state.tasks;
     let dayTasks = [];
     switch (action.type) {
@@ -82,6 +84,20 @@ const tasks = (state = { tasks: new Map() }, action: Action) => {
                 }
             });
             tempTasks.set(moment(updatedTask.stop).format('YYYY-MM-DD'), [...dayTasks])
+            return {
+                ...state,
+                tasks: tempTasks
+            }
+        case 'UPDATE_TASK_PROJECT':
+            tempTasks = state.tasks;
+            const updatedTaskProject = action.task!;
+            dayTasks = tempTasks.get(moment(updatedTaskProject.stop).format('YYYY-MM-DD'));
+            dayTasks.forEach((element: TaskType) => {
+                if (updatedTask.id === element.id) {
+                    element.pid = updatedTask.pid
+                }
+            });
+            tempTasks.set(moment(updatedTaskProject.stop).format('YYYY-MM-DD'), [...dayTasks])
             return {
                 ...state,
                 tasks: tempTasks

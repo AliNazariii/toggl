@@ -6,7 +6,7 @@ import { SwipeableList, SwipeableListItem } from '@sandstreamdev/react-swipeable
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { TaskType } from '../../../../reducers/tasks';
-import { removeTask } from '../../../../actions/tasks';
+import { removeTask } from '../../../../actions/tasks/remove';
 import { AppState } from '../../../../reducers/index';
 
 interface Props {
