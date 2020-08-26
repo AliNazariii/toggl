@@ -15,7 +15,6 @@ const MenuItem = ({ title }: Props) => {
 	const link: string = 
 		title === 'Timer' ? '/' : 
 		title === 'Setting' ? '/setting' : '/report';
-	const [isActive, setActive] = useState(false);
 	return(
 		<NavLink 
 			to={link} 

@@ -14,7 +14,7 @@ interface Props {
 
 const Task = ({ data }: Props) => { 
     const dispatch = useDispatch();
-    const state = useSelector((state: AppState) => state.setting);
+    const state = useSelector((state: AppState) => state);
     const startTask = () => {
         dispatch({ type: 'TOGGLE_RUNNING', description: data.description });
     }
@@ -27,7 +27,14 @@ const Task = ({ data }: Props) => {
                         <p>{data.counter}</p>
                     </div>
                 )}
-                <p className={Styles.Title}>{data.description || "Add Description"}</p>
+                {data.pid === undefined ? (
+                    <p className={Styles.Title}>{data.description || "Add Description"}</p>
+                ): (
+                    <div>
+                        <p className={Styles.Title}>{data.description || "Add Description"}</p>
+                        <p style={{ color: "#ff3333" }} className={Styles.Title}>{state.projects.projects.find((item) => item.id === data.pid)?.name}</p>
+                    </div> 
+                )}
             </div>
             <div 
                 className={Styles.TimePlayBlock}
@@ -35,10 +42,10 @@ const Task = ({ data }: Props) => {
             >
                 <h5 className={Styles.Duration}>
                     {data.duration < 60 ? (
-                        `${moment.utc(data.duration * 1000).format(state.durationFormat === 0 ? 'ss' : 'HH:mm:ss')} ${state.durationFormat === 0 ? "sec" : ""}`
+                        `${moment.utc(data.duration * 1000).format(state.setting.durationFormat === 0 ? 'ss' : 'HH:mm:ss')} ${state.setting.durationFormat === 0 ? "sec" : ""}`
 
                     ) : (
-                        `${moment.utc(data.duration * 1000).format(state.durationFormat === 0 ? 'mm:ss' : 'HH:mm:ss')} ${state.durationFormat === 0 ? "min" : ""}`
+                        `${moment.utc(data.duration * 1000).format(state.setting.durationFormat === 0 ? 'mm:ss' : 'HH:mm:ss')} ${state.setting.durationFormat === 0 ? "min" : ""}`
                     )}
                 </h5>
                 <FontAwesomeIcon 

@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Styles from './Modal.module.scss';
 import { AppState } from '../../../../reducers/index';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeModal } from '../../../../actions/projects/modal';
+import { addProject } from '../../../../actions/projects/add';
 import { updateTaskProject } from '../../../../actions/tasks/update';
 import { ProjectType } from '../../../../reducers/projects';
 
 function Modal() {
 	const state = useSelector((state: AppState) => state);
 	const dispatch = useDispatch();
+    const [inputValue, setValue] = useState('');
 
 	return (
 		<div 
-			className={Styles.Modal} style={{ display: state.projects.modal ? "block" : "none" }}
-			onClick={() => dispatch(closeModal())}
+			id="back"
+			className={Styles.Modal} 
+			style={{ display: state.projects.modal ? "block" : "none" }}
+			onClick={(e) => {			 
+				// @ts-ignore
+				if (e.target.id === 'back') dispatch(closeModal())
+			}}
 		>
 			<div className={Styles.ModalContent}>
 				<h4>Select Project</h4>
@@ -38,17 +45,31 @@ function Modal() {
 							key={index}
 							onClick={() => {
 								dispatch(updateTaskProject(state.taskDetails.task, item.id));
+								dispatch(closeModal());
 							}}
 						>
 							<input 
 								type="radio" 
 								name="project" 
 								onChange={() => console.log(item.name)}
-								checked={state.projects.projects.map((project: ProjectType) => project.id).includes(state.taskDetails.task.pid!)} 
+								checked={state.taskDetails.task.pid === item.id} 
 							/>
 							<label>{item.name}</label>
 						</div>
 				)): null }	
+				<div className={Styles.ItemContainer}>
+					<input 
+						type="text" 
+						onChange={(e) => setValue(e.target.value)}
+						placeholder="New Project Name"
+					/>
+					<button onClick={() => {
+						dispatch(addProject(inputValue));
+						dispatch(closeModal());
+					}}>
+						Add
+					</button>
+				</div>
 			</div>
         </div>
 	);

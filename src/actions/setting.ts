@@ -1,5 +1,3 @@
-import { TaskType } from '../reducers/tasks';
-
 export const changeDateFormat = (format: string) => {
     return {
         type: 'SET_DATE_FORMAT',

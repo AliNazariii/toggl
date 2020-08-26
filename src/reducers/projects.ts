@@ -23,7 +23,7 @@ export type ProjectType = {
 }
 
 const projects = (state = { projects: new Array<ProjectType>(), modal: false }, action: ProjectActionType) => {
-    let projects = state.projects;
+    // let projects = state.projects;
     switch (action.type) {
         case 'SET_PROJECTS':
             return {
@@ -42,16 +42,16 @@ const projects = (state = { projects: new Array<ProjectType>(), modal: false }, 
             // projects = state.projects.filter()
             return {
                 ...state,
-                projects: [
-                    ...state.projects,
-                    action.project
-                ]
+                // projects: [
+                //     ...state.projects,
+                //     action.project
+                // ]
             };
         case 'UPDATE_PROJECT':
             return {
                 ...state,
                 // projects: tempTasks
-                modal: false
+                // modal: false
             };
         case 'OPEN_MODAL':
             return {

@@ -20,8 +20,13 @@ function Modal() {
 	]
 	return (
 		<div 
-			className={Styles.Modal} style={{ display: state.modal.status ? "block" : "none" }}
-			onClick={() => dispatch(closeModal())}
+			id="back"
+			className={Styles.Modal} 
+			style={{ display: state.modal.status ? "block" : "none" }}
+			onClick={(e) => {			 
+				// @ts-ignore
+				if (e.target.id === 'back') dispatch(closeModal())
+			}}
 		>
 			<div className={Styles.ModalContent}>
 				<h4>{state.modal.type} format</h4>

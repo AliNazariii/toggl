@@ -9,7 +9,6 @@ import { removeTask } from '../../../actions/tasks/remove';
 import { updateTask } from '../../../actions/tasks/update';
 import { openModal } from '../../../actions/projects/modal';
 import Modal from './Modal/Modal';
-import { ProjectType } from '../../../reducers/projects';
 
 const Details = () => { 
     const dispatch = useDispatch();
@@ -83,7 +82,7 @@ const Details = () => {
                         className={Styles.Icon}
                     />
                     <h5 className={Styles.Project}>
-                        {state.projects.projects?.find((item) => item!.id === state.taskDetails.task.pid)?.name}
+                        {state.projects.projects?.find((item) => item!.id === state.taskDetails.task.pid)?.name || "No Project"}
                     </h5>
                 </div>
                 <div className={Styles.Divider} />
