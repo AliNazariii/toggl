@@ -2,10 +2,14 @@ import React, { useRef, useEffect, useState } from 'react';
 import Styles from './TaskDetails.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes,faTrashAlt, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faTimes,faTrashAlt, faTag, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import { AppState } from '../../../reducers/index';
 import moment from 'moment';
-import { removeTask, updateTask } from '../../../actions/tasks';
+import { removeTask } from '../../../actions/tasks/remove';
+import { updateTask } from '../../../actions/tasks/update';
+import { openModal } from '../../../actions/projects/modal';
+import Modal from './Modal/Modal';
+import { ProjectType } from '../../../reducers/projects';
 
 const Details = () => { 
     const dispatch = useDispatch();
@@ -28,6 +32,7 @@ const Details = () => {
     }, [state.taskDetails.isOpen])
     return(
         <div className={[Styles.DetailsContainer, state.taskDetails.isOpen ? null : Styles.DetailsClose].join(' ')}>
+            <Modal />
             <div className={Styles.Top}>
                 <FontAwesomeIcon 
                     color="#ffffff"
@@ -67,13 +72,31 @@ const Details = () => {
                     </select>
                 </div>
                 <div className={Styles.Divider} /> */}
-                <div className={Styles.OthersItemBlock} onClick={remove}>    
+                <div 
+                    className={Styles.OthersItemBlock}
+                    onClick={() => dispatch(openModal())}
+                >    
                     <FontAwesomeIcon 
                         color="#8a8a8a"
                         size="lg"
-                        icon={faTrashAlt} 
+                        icon={faFolderOpen} 
+                        className={Styles.Icon}
                     />
-                    <h5>{`Delete ${state.taskDetails.task.counter === 1 ? 'this task' : `${state.taskDetails.task.counter} tasks`}`}</h5>
+                    <h5 className={Styles.Project}>
+                        {state.projects.projects?.find((item) => item!.id === state.taskDetails.task.pid)?.name}
+                    </h5>
+                </div>
+                <div className={Styles.Divider} />
+                <div className={Styles.OthersItemBlock} onClick={remove}>    
+                    <FontAwesomeIcon 
+                        color="#ff3333"
+                        size="lg"
+                        icon={faTrashAlt} 
+                        className={Styles.Icon}
+                    />
+                    <h5 className={Styles.Delete}>
+                        {`Delete ${state.taskDetails.task.counter === 1 ? 'this task' : `${state.taskDetails.task.counter} tasks`}`}
+                    </h5>
                 </div>
                 <div className={Styles.Divider} />
             </div>

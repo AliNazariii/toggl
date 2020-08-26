@@ -38,7 +38,6 @@ function Modal() {
 								type="radio" 
 								name="Date" 
 								onChange={() => console.log(item)} 
-								value={item} 
 								checked={state.dateFormat === item} 
 							/>
 							<label>{item}</label>
@@ -56,7 +55,6 @@ function Modal() {
 								type="radio" 
 								name="Duration" 
 								onChange={() => console.log(item)} 
-								value={index} 
 								checked={state.durationFormat === index} 
 							/>
 							<label>{item}</label>
