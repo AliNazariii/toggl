@@ -3,7 +3,7 @@ import moment from 'moment';
 interface Action {
     tasks: Map<string, TaskType[]>,
     type: string,
-    task: TaskType
+    task?: TaskType
 }
 
 export type TaskType = {
@@ -32,25 +32,26 @@ const tasks = (state = { tasks: new Map() }, action: Action) => {
             };
         case 'ADD_TASK':
             tempTasks = state.tasks;
-            if (tempTasks.has(moment(action.task.stop).format('YYYY-MM-DD'))) {
-                dayTasks = tempTasks.get(moment(action.task.stop).format('YYYY-MM-DD'));
-                let thisTask = dayTasks.find((item: TaskType) => action.task.description === item.description);
+            const newTask = action.task!;
+            if (tempTasks.has(moment(newTask.stop).format('YYYY-MM-DD'))) {
+                dayTasks = tempTasks.get(moment(newTask.stop).format('YYYY-MM-DD'));
+                let thisTask = dayTasks.find((item: TaskType) => newTask.description === item.description);
                 if (thisTask) {
                     for (let i of dayTasks) {
                         if (i.id === thisTask.id) {
-                            i.duration += action.task.duration;
+                            i.duration += newTask.duration;
                             i.counter += 1;
-                            i.id = [...i.id, action.task.id];
+                            i.id = [...i.id, newTask.id];
                             break;
                         }
                     }
-                    tempTasks.set(moment(action.task.stop).format('YYYY-MM-DD'), [...dayTasks])
+                    tempTasks.set(moment(newTask.stop).format('YYYY-MM-DD'), [...dayTasks])
                 } else {
-                    tempTasks.set(moment(action.task.stop).format('YYYY-MM-DD'), 
-                        [...tempTasks.get(moment(action.task.stop).format('YYYY-MM-DD')), { ...action.task, counter: 1, id: [action.task.id] }])
+                    tempTasks.set(moment(newTask.stop).format('YYYY-MM-DD'), 
+                        [...tempTasks.get(moment(newTask.stop).format('YYYY-MM-DD')), { ...action.task, counter: 1, id: [newTask.id] }])
                 }
             } else {
-                tempTasks.set(moment(action.task.stop).format('YYYY-MM-DD'), [{ ...action.task, counter: 1, id: [action.task.id] }])
+                tempTasks.set(moment(newTask.stop).format('YYYY-MM-DD'), [{ ...action.task, counter: 1, id: [newTask.id] }])
             }
             return {
                 ...state,
@@ -58,13 +59,14 @@ const tasks = (state = { tasks: new Map() }, action: Action) => {
             };
         case 'REMOVE_TASK':
             tempTasks = state.tasks;
-            dayTasks = tempTasks.get(moment(action.task.stop).format('YYYY-MM-DD'));
+            const oldTask = action.task!;
+            dayTasks = tempTasks.get(moment(oldTask.stop).format('YYYY-MM-DD'));
             if (dayTasks.length === 1) {
-                tempTasks.delete(moment(action.task.stop).format('YYYY-MM-DD'));
+                tempTasks.delete(moment(oldTask.stop).format('YYYY-MM-DD'));
             } else {
-                let index = dayTasks.findIndex((item: TaskType) => item.id === action.task.id);
+                let index = dayTasks.findIndex((item: TaskType) => item.id === oldTask.id);
                 dayTasks.splice(index, 1);
-                tempTasks.set(moment(action.task.stop).format('YYYY-MM-DD'), dayTasks);
+                tempTasks.set(moment(oldTask.stop).format('YYYY-MM-DD'), dayTasks);
             }
             return {
                 ...state,
@@ -72,13 +74,14 @@ const tasks = (state = { tasks: new Map() }, action: Action) => {
             };
         case 'UPDATE_TASK':
             tempTasks = state.tasks;
-            dayTasks = tempTasks.get(moment(action.task.stop).format('YYYY-MM-DD'));
+            const updatedTask = action.task!;
+            dayTasks = tempTasks.get(moment(updatedTask.stop).format('YYYY-MM-DD'));
             dayTasks.forEach((element: TaskType) => {
-                if (action.task.id === element.id) {
-                    element.description = action.task.description
+                if (updatedTask.id === element.id) {
+                    element.description = updatedTask.description
                 }
             });
-            tempTasks.set(moment(action.task.stop).format('YYYY-MM-DD'), [...dayTasks])
+            tempTasks.set(moment(updatedTask.stop).format('YYYY-MM-DD'), [...dayTasks])
             return {
                 ...state,
                 tasks: tempTasks

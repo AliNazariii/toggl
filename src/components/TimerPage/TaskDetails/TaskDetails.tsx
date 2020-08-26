@@ -3,7 +3,7 @@ import Styles from './TaskDetails.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes,faTrashAlt, faTag } from '@fortawesome/free-solid-svg-icons';
-import { AppState } from '../../../index';
+import { AppState } from '../../../reducers/index';
 import moment from 'moment';
 import { removeTask, updateTask } from '../../../actions/tasks';
 
