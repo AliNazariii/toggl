@@ -8,11 +8,11 @@ import { TaskType } from '../../../../reducers/tasks';
 import { openDetails } from '../../../../actions/taskDetails';
 import { AppState } from '../../../../reducers/index';
 
-interface Props {
+interface TaksProps {
     data: TaskType
 }
 
-const Task = ({ data }: Props) => { 
+const Task = ({ data }: TaksProps) => { 
     const dispatch = useDispatch();
     const state = useSelector((state: AppState) => state);
     const startTask = () => {

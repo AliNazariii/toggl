@@ -77,6 +77,6 @@ function ReportPage() {
             }
         </div>
 	);
-}
+};
 
 export default ReportPage;

@@ -1,9 +1,6 @@
 import { ActionTypeKeys } from '../actions/actionTypes';
+import { SettingActionType } from '../actions/setting';
 
-interface Action {
-    type: string,
-    format: string | number
-}
 const initialState = {
     dateFormat: 'ddd, MMM DD', 
     durationFormat: 1,
@@ -13,7 +10,7 @@ const initialState = {
     }
 }
 
-const setting = (state = initialState, action: Action) => {
+const setting = (state = initialState, action: SettingActionType) => {
     switch (action.type) {
         case ActionTypeKeys.SET_DATE_FORMAT:
             return {

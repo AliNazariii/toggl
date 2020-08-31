@@ -11,17 +11,17 @@ window.addEventListener('resize', () => {
 });
 
 const Layout: FunctionComponent = ({ children }) => {
-  return(
-	<div className={Styles.LayoutContainer}>
-		<div className={Styles.ContentContainer}>
-			{children}
+	return(
+		<div className={Styles.LayoutContainer}>
+			<div className={Styles.ContentContainer}>
+				{children}
+			</div>
+			<div className={Styles.FooterContainer}>
+				<RunningTaskContainer />
+				<BottomMenu />
+			</div>
 		</div>
-		<div className={Styles.FooterContainer}>
-			<RunningTaskContainer />
-			<BottomMenu />
-		</div>
-	</div>
-  )
-}
+	);
+};
 
 export default Layout;

@@ -3,21 +3,11 @@ import Styles from './Modal.module.scss';
 import { AppState } from '../../../reducers/index';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeDateFormat, changeDurationFormat, closeModal } from '../../../actions/setting';
+import { DurationFormats, DateFormats } from '../SettingItem/SettingItem';
 
 function Modal() {
 	const state = useSelector((state: AppState) => state.setting);
 	const dispatch = useDispatch();
-	const DateFormats = [
-		'YYYY-MM-DD',
-		'DD/MM/YYYY',
-		'DD.MM.YYYY',
-		'ddd, YYYY MMM DD',
-		'ddd, MMM DD'
-	];
-	const DurationFormats = [
-		'Classic (47:06 min)',
-		'Improved (0:47:06)'
-	]
 	return (
 		<div 
 			id="back"

@@ -21,7 +21,7 @@ export type ProjectType = {
     color: string,
     auto_estimates: boolean,
     hex_color: string
-}
+};
 
 const projects = (state = { projects: new Array<ProjectType>(), modal: false }, action: ProjectActionType) => {
     switch (action.type) {

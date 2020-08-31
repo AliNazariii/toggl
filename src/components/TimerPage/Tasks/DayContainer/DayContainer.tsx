@@ -9,11 +9,11 @@ import { TaskType } from '../../../../reducers/tasks';
 import { removeTask } from '../../../../actions/tasks/remove';
 import { AppState } from '../../../../reducers/index';
 
-interface Props {
+interface DayContainerProps {
     day: string,
     data: Array<TaskType>
 }
-const DayContainer = ({ day, data }: Props) => {
+const DayContainer = ({ day, data }: DayContainerProps) => {
     const [duration, setDuration] = useState(0);
     const state = useSelector((state: AppState) => state.setting);
     const dispatch = useDispatch();

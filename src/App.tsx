@@ -8,6 +8,7 @@ import { Switch, Route } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { fetchTasks } from './actions/tasks/fetch';
 import { fetchProjects } from './actions/projects/fetch';
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
 	const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function App() {
 	
 	return (
 		<Layout>
-			<LogoContainer />
+			<LogoContainer icon={faPowerOff} />
 			<Switch>
 				<Route path="/setting">
 					<SettingPage />
@@ -32,6 +33,6 @@ function App() {
 			</Switch>
 		</Layout>
 	);
-}
+};
 
 export default App;

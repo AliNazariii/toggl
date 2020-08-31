@@ -1,37 +1,36 @@
 import React from 'react';
 import Styles from './BottomMenu.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faCog, faChartBar } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, useLocation } from "react-router-dom";
-interface Props {
-	title: String
-}
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+interface MenuItemProps {
+	title: string, 
+	link: string,
+	icon: IconDefinition
+};
 
-const MenuItem = ({ title }: Props) => {
+const MenuItem = ({ title, link, icon }: MenuItemProps) => {
 	const location = useLocation();
-	const icon: typeof faClock = 
-		title === 'Timer' ? faClock : 
-		title === 'Setting' ? faCog : faChartBar;
-	const link: string = 
-		title === 'Timer' ? '/' : 
-		title === 'Setting' ? '/setting' : '/report';
 	return(
 		<NavLink 
 			to={link} 
 			className={Styles.Link} 
 		>
-			<button className={Styles.Btn} style={{ color: location.pathname === link ? "#3e84dc": "#8a8a8a"}}>
+			<button 
+				className={Styles.Btn} 
+				style={{ color: location.pathname === link ? "#3e84dc" : "#8a8a8a" }}
+			>
 				<FontAwesomeIcon 
 					className={Styles.Icon} 
 					icon={icon} 
 					size="lg" 
-					/>
+				/>
 				<p> 
 					{title}
 				</p>
 			</button>
 		</NavLink>
-	)
-}
+	);
+};
 
 export default MenuItem;

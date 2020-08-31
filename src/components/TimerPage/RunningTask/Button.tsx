@@ -5,13 +5,13 @@ import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux'
 import { addTask } from '../../../actions/tasks/add';
 
-interface Props {
+interface ButtonProps {
 	running: boolean,
 	start: string,
 	duration: number,
 	description: string
 }
-const GreenBtn = ({ running, start, duration, description }: Props) => {
+const GreenBtn = ({ running, start, duration, description }: ButtonProps) => {
 	const dispatch = useDispatch();
 	const handleToggle = () => {
 		if (running) {
