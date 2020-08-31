@@ -1,15 +1,15 @@
 import { AppDispatch } from '../../index';
 import { TaskType } from '../../reducers/tasks';
-import { TaskActionTypeKeys } from './index'; 
+import { ActionTypeKeys } from '../actionTypes'; 
 
 export type FetchTaskActionType = {
-    type: typeof TaskActionTypeKeys.SET_TASKS,
+    type: typeof ActionTypeKeys.SET_TASKS,
     tasks: Array<TaskType>
 };
 
 export const setTasks = (tasks: Array<TaskType>): FetchTaskActionType => {
     return {
-        type: TaskActionTypeKeys.SET_TASKS,
+        type: ActionTypeKeys.SET_TASKS,
         tasks: tasks
     };
 };

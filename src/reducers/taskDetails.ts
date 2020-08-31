@@ -1,3 +1,4 @@
+import { ActionTypeKeys } from '../actions/actionTypes';
 import { TaskType } from './tasks';
 
 interface Action {
@@ -12,13 +13,13 @@ const initialTask: TaskType = {
 
 const taskDetails = (state = { isOpen: false, task: initialTask }, action: Action) => {
     switch (action.type) {
-        case 'OPEN_DETAILS':
+        case ActionTypeKeys.OPEN_DETAILS:
             return {
                 ...state,
                 isOpen: true,
                 task: action.task
             };
-        case 'CLOSE_DETAILS':
+        case ActionTypeKeys.CLOSE_DETAILS:
             return {
                 ...state,
                 isOpen: false

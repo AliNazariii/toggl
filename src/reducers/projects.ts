@@ -1,4 +1,4 @@
-import { ProjectActionTypeKeys } from '../actions/projects/index';
+import { ActionTypeKeys } from '../actions/actionTypes';
 import { AddProjectActionType } from '../actions/projects/add';
 import { UpdateProjectActionType } from '../actions/projects/update';
 import { RemoveProjectActionType } from '../actions/projects/remove';
@@ -25,12 +25,12 @@ export type ProjectType = {
 
 const projects = (state = { projects: new Array<ProjectType>(), modal: false }, action: ProjectActionType) => {
     switch (action.type) {
-        case ProjectActionTypeKeys.SET_PROJECTS:
+        case ActionTypeKeys.SET_PROJECTS:
             return {
                 ...state,
                 projects: [...action.projects]
             };
-        case ProjectActionTypeKeys.ADD_PROJECT:
+        case ActionTypeKeys.ADD_PROJECT:
             return {
                 ...state,
                 projects: [
@@ -38,20 +38,20 @@ const projects = (state = { projects: new Array<ProjectType>(), modal: false }, 
                     action.project
                 ]
             };
-        case ProjectActionTypeKeys.REMOVE_PROJECT:
+        case ActionTypeKeys.REMOVE_PROJECT:
             return {
                 ...state,
             };
-        case ProjectActionTypeKeys.UPDATE_PROJECT:
+        case ActionTypeKeys.UPDATE_PROJECT:
             return {
                 ...state,
             };
-        case ProjectActionTypeKeys.OPEN_MODAL:
+        case ActionTypeKeys.OPEN_MODAL:
             return {
                 ...state,
                 modal: true
             };
-        case ProjectActionTypeKeys.CLOSE_MODAL:
+        case ActionTypeKeys.CLOSE_MODAL:
             return {
                 ...state,
                 modal: false

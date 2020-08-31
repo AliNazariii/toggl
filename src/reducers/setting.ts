@@ -1,3 +1,5 @@
+import { ActionTypeKeys } from '../actions/actionTypes';
+
 interface Action {
     type: string,
     format: string | number
@@ -13,7 +15,7 @@ const initialState = {
 
 const setting = (state = initialState, action: Action) => {
     switch (action.type) {
-        case 'SET_DATE_FORMAT':
+        case ActionTypeKeys.SET_DATE_FORMAT:
             return {
                 ...state,
                 dateFormat: action.format,
@@ -22,7 +24,7 @@ const setting = (state = initialState, action: Action) => {
                     status: false
                 }
             };
-        case 'SET_DURATION_FORMAT':
+        case ActionTypeKeys.SET_DURATION_FORMAT:
             return {
                 ...state,
                 durationFormat: action.format,
@@ -31,7 +33,7 @@ const setting = (state = initialState, action: Action) => {
                     status: false
                 }
             };
-        case 'OPEN_MODAL':
+        case ActionTypeKeys.OPEN_MODAL:
             return {
                 ...state,
                 modal: {
@@ -40,7 +42,7 @@ const setting = (state = initialState, action: Action) => {
                     type: action.format
                 }
             };
-        case 'CLOSE_MODAL':
+        case ActionTypeKeys.CLOSE_MODAL:
             return {
                 ...state,
                 modal: {

@@ -1,21 +1,21 @@
 import { AppDispatch } from '../../index';
 import { TaskType } from '../../reducers/tasks';
-import { TaskActionTypeKeys } from './index'; 
+import { ActionTypeKeys } from '../actionTypes'; 
 
 export type UpdateTaskActionType = {
-    type: typeof TaskActionTypeKeys.UPDATE_TASK_PROJECT | typeof TaskActionTypeKeys.UPDATE_TASK,
+    type: typeof ActionTypeKeys.UPDATE_TASK_PROJECT | typeof ActionTypeKeys.UPDATE_TASK,
     task: TaskType
 };
 
 export const update = (task: TaskType, project: boolean = false): UpdateTaskActionType => {
     if (project) {
         return {
-            type: TaskActionTypeKeys.UPDATE_TASK_PROJECT,
+            type: ActionTypeKeys.UPDATE_TASK_PROJECT,
             task: task
         };
     } else {
         return {
-            type: TaskActionTypeKeys.UPDATE_TASK,
+            type: ActionTypeKeys.UPDATE_TASK,
             task: task
         };
     }

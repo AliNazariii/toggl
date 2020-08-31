@@ -1,3 +1,5 @@
+import { ActionTypeKeys } from '../actions/actionTypes';
+
 interface Action {
     type: string,
     description: string
@@ -5,7 +7,7 @@ interface Action {
 
 const runningTask = (state = { isRunning: false, description: '' }, action: Action) => {
     switch (action.type) {
-        case 'TOGGLE_RUNNING':
+        case ActionTypeKeys.TOGGLE_RUNNING:
             return {
                 ...state,
                 isRunning: !state.isRunning,

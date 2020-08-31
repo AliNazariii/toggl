@@ -1,4 +1,4 @@
-import { TaskActionTypeKeys } from '../actions/tasks/index';
+import { ActionTypeKeys } from '../actions/actionTypes';
 import { AddTaskActionType } from '../actions/tasks/add';
 import { UpdateTaskActionType } from '../actions/tasks/update';
 import { RemoveTaskActionType } from '../actions/tasks/remove';
@@ -25,12 +25,12 @@ export type TaskType = {
 
 const tasks = (state = { tasks: new Array<TaskType>() }, action: TaskActionType) => {
     switch (action.type) {
-        case TaskActionTypeKeys.SET_TASKS:
+        case ActionTypeKeys.SET_TASKS:
             return {
                 ...state,
                 tasks: action.tasks
             };
-        case TaskActionTypeKeys.ADD_TASK:
+        case ActionTypeKeys.ADD_TASK:
             return {
                 ...state,
                 tasks: [
@@ -38,21 +38,21 @@ const tasks = (state = { tasks: new Array<TaskType>() }, action: TaskActionType)
                     action.task
                 ]
             };
-        case TaskActionTypeKeys.REMOVE_TASK:
+        case ActionTypeKeys.REMOVE_TASK:
             return {
                 ...state,
                 tasks: [
                     ...state.tasks.filter((task: TaskType) => task.id !== action.taskId)
                 ]
             };
-        case TaskActionTypeKeys.UPDATE_TASK:
+        case ActionTypeKeys.UPDATE_TASK:
             return {
                 ...state,
                 tasks: [
                     ...state.tasks.map((task: TaskType) => task.id === action.task.id ? action.task : task)
                 ]
             };
-        case TaskActionTypeKeys.UPDATE_TASK_PROJECT:
+        case ActionTypeKeys.UPDATE_TASK_PROJECT:
             return {
                 ...state,
                 tasks: [

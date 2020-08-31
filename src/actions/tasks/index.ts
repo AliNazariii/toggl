@@ -1,7 +1,0 @@
-export enum TaskActionTypeKeys {
-    ADD_TASK = 'ADD_TASK',
-    SET_TASKS = 'SET_TASKS',
-    REMOVE_TASK = 'REMOVE_TASK',
-    UPDATE_TASK_PROJECT = 'UPDATE_TASK_PROJECT',
-    UPDATE_TASK = 'UPDATE_TASK'
-};

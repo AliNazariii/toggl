@@ -1,15 +1,15 @@
 import { TaskType } from '../../reducers/tasks';
 import { AppDispatch } from '../../index';
-import { TaskActionTypeKeys } from './index'; 
+import { ActionTypeKeys } from '../actionTypes'; 
 
 export type RemoveTaskActionType = {
-    type: typeof TaskActionTypeKeys.REMOVE_TASK,
+    type: typeof ActionTypeKeys.REMOVE_TASK,
     taskId: number
 };
 
 export const remove = (taskId: number): RemoveTaskActionType => {
     return {
-        type: TaskActionTypeKeys.REMOVE_TASK,
+        type: ActionTypeKeys.REMOVE_TASK,
         taskId: taskId
     };
 };

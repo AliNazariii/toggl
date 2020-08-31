@@ -1,15 +1,15 @@
 import { ProjectType } from '../../reducers/projects';
 import { AppDispatch } from '../../index';
-import { ProjectActionTypeKeys } from './index'; 
+import { ActionTypeKeys } from '../actionTypes'; 
 
 export type AddProjectActionType = {
-    type: typeof ProjectActionTypeKeys.ADD_PROJECT,
+    type: typeof ActionTypeKeys.ADD_PROJECT,
     project: ProjectType
 };
 
 export const add = (project: ProjectType): AddProjectActionType => {
     return {
-        type: ProjectActionTypeKeys.ADD_PROJECT,
+        type: ActionTypeKeys.ADD_PROJECT,
         project: project
     };
 };
