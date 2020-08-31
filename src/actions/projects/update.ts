@@ -1,16 +1,16 @@
 import { ProjectType } from '../../reducers/projects';
 import { AppDispatch } from '../../index';
+import { ProjectActionTypeKeys } from './index'; 
 
-export const UPDATE_PROJECT = 'UPDATE_PROJECT';
 
 export type UpdateProjectActionType = {
-    type: typeof UPDATE_PROJECT,
+    type: typeof ProjectActionTypeKeys.UPDATE_PROJECT,
     project: ProjectType
 };
 
 const update = (project: ProjectType): UpdateProjectActionType => {
     return {
-        type: 'UPDATE_PROJECT',
+        type: ProjectActionTypeKeys.UPDATE_PROJECT,
         project: project
     };
 };
@@ -36,5 +36,5 @@ export const updateProject = (project: ProjectType, name: string) => {
             ...project,
             name: name
         }));
-    }
+    };
 };

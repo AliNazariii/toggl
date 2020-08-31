@@ -1,23 +1,21 @@
 import { AppDispatch } from '../../index';
 import { TaskType } from '../../reducers/tasks';
-
-export const UPDATE_TASK_PROJECT = 'UPDATE_TASK_PROJECT';
-export const UPDATE_TASK = 'UPDATE_TASK';
+import { TaskActionTypeKeys } from './index'; 
 
 export type UpdateTaskActionType = {
-    type: typeof UPDATE_TASK_PROJECT | typeof UPDATE_TASK,
+    type: typeof TaskActionTypeKeys.UPDATE_TASK_PROJECT | typeof TaskActionTypeKeys.UPDATE_TASK,
     task: TaskType
 };
 
 export const update = (task: TaskType, project: boolean = false): UpdateTaskActionType => {
     if (project) {
         return {
-            type: 'UPDATE_TASK_PROJECT',
+            type: TaskActionTypeKeys.UPDATE_TASK_PROJECT,
             task: task
         };
     } else {
         return {
-            type: 'UPDATE_TASK',
+            type: TaskActionTypeKeys.UPDATE_TASK,
             task: task
         };
     }
@@ -41,12 +39,15 @@ export const updateTask = (task: TaskType, description: string) => {
                 })  
             })
             .then(response => response.text())
+            .then(() => {
+                dispatch(update({
+                    ...task,
+                    id: id,
+                    description: description
+                }));
+            })
             .catch(e => console.log(e))
         }
-        dispatch(update({
-            ...task,
-            description: description
-        }));
     }
 };
 
@@ -68,11 +69,14 @@ export const updateTaskProject = (task: TaskType, projectID: number | undefined)
                 })  
             })
             .then(response => response.text())
+            .then(() => {
+                dispatch(update({
+                    ...task,
+                    id: id,
+                    pid: projectID
+                }, true));
+            })
             .catch(e => console.log(e))
         }
-        dispatch(update({
-            ...task,
-            pid: projectID
-        }, true));
     }
 };

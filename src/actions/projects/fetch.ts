@@ -1,16 +1,15 @@
 import { ProjectType } from '../../reducers/projects';
 import { AppDispatch } from '../../index';
-
-export const SET_PROJECTS = 'SET_PROJECTS';
+import { ProjectActionTypeKeys } from './index'; 
 
 export type FetchProjectActionType = {
-    type: typeof SET_PROJECTS,
+    type: typeof ProjectActionTypeKeys.SET_PROJECTS,
     projects: ProjectType[]
 };
 
 const setProjects = (projects: ProjectType[]): FetchProjectActionType => {
     return {
-        type: 'SET_PROJECTS',
+        type: ProjectActionTypeKeys.SET_PROJECTS,
         projects: projects
     };
 };
@@ -30,5 +29,5 @@ export const fetchProjects = () => {
             dispatch(setProjects(projects));
         })
         .catch(e => console.log(e))
-    }
+    };
 };

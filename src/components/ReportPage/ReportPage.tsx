@@ -20,36 +20,32 @@ function ReportPage() {
 	}
 	const colors = ['#3B3561', '#DD7373', '#EAD94C', '#D1D1D1', '#51A3A3', '#7C9EB2', '#FFFCFF', '#CBD4C2', '#C3B299', '#247BA0'];
 	useEffect(() => {
-		async function calcPercentages() {
-			if (state.projects.projects.length > 0) {
-				let tasks: TaskType[] = [];
-				[...state.tasks.tasks.keys()].forEach(key => tasks = [...tasks, ...state.tasks.tasks.get(key)]);
-				let projects = state.projects.projects.map((project: ProjectType) => ({ id: project.id, name: project.name, duration: 0 }));
-				projects.push({ id: 111111111, name: 'No Project', duration: 0});
-				tasks.forEach(task => {
-					if (task.pid === undefined) {
-						projects[projects.length - 1].duration += task.duration;
-					} else {
-						projects.find(projects => projects.id === task.pid)!.duration += task.duration;
-					}
-				});
-				let tempData: pie[] = [];
-				projects.forEach((project, index) => {
-					if (project.duration > 0) {
-						tempData = [
-							...tempData,
-							{
-								name: project.name,
-								value: project.duration,
-								stroke: colors[index % 10]
-							}
-						];
-					}
-				});
-				setData(tempData);
-			}
+		if (state.projects.projects.length > 0) {
+			let tasks: TaskType[] = state.tasks.tasks;
+			let projects = state.projects.projects.map((project: ProjectType) => ({ id: project.id, name: project.name, duration: 0 }));
+			projects.push({ id: 111111111, name: 'No Project', duration: 0});
+			tasks.forEach(task => {
+				if (task.pid === undefined) {
+					projects[projects.length - 1].duration += task.duration;
+				} else {
+					projects.find(projects => projects.id === task.pid)!.duration += task.duration;
+				}
+			});
+			let tempData: pie[] = [];
+			projects.forEach((project, index) => {
+				if (project.duration > 0) {
+					tempData = [
+						...tempData,
+						{
+							name: project.name,
+							value: project.duration,
+							stroke: colors[index % 10]
+						}
+					];
+				}
+			});
+			setData(tempData);
 		}
-		calcPercentages();
 	}, [state]);
 
 	return (

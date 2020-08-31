@@ -1,16 +1,15 @@
 import { ProjectType } from '../../reducers/projects';
 import { AppDispatch } from '../../index';
-
-export const ADD_PROJECT = 'ADD_PROJECT';
+import { ProjectActionTypeKeys } from './index'; 
 
 export type AddProjectActionType = {
-    type: typeof ADD_PROJECT,
+    type: typeof ProjectActionTypeKeys.ADD_PROJECT,
     project: ProjectType
 };
 
 export const add = (project: ProjectType): AddProjectActionType => {
     return {
-        type: ADD_PROJECT,
+        type: ProjectActionTypeKeys.ADD_PROJECT,
         project: project
     };
 };
@@ -37,5 +36,5 @@ export const addProject = (name: string) => {
             dispatch(add(data.data));
         })
         .catch(e => console.log(e))
-    }
-}
+    };
+};

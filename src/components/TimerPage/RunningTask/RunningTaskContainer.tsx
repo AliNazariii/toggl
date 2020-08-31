@@ -38,7 +38,7 @@ const RunningTaskContainer = () => {
 			) : null}
 			<Button start={start} duration={timer} description={state.description} running={state.isRunning} />
 		</div>
-	)
-}
+	);
+};
 
 export default RunningTaskContainer;

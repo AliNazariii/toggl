@@ -1,10 +1,11 @@
+import { ProjectActionTypeKeys } from '../actions/projects/index';
 import { AddProjectActionType } from '../actions/projects/add';
 import { UpdateProjectActionType } from '../actions/projects/update';
 import { RemoveProjectActionType } from '../actions/projects/remove';
 import { FetchProjectActionType } from '../actions/projects/fetch';
 import { ModalProjectActionType } from '../actions/projects/modal';
 export type ProjectActionType = 
-    | AddProjectActionType | UpdateProjectActionType 
+    | AddProjectActionType | UpdateProjectActionType
     | RemoveProjectActionType | FetchProjectActionType | ModalProjectActionType;
 
 export type ProjectType = {
@@ -23,14 +24,13 @@ export type ProjectType = {
 }
 
 const projects = (state = { projects: new Array<ProjectType>(), modal: false }, action: ProjectActionType) => {
-    // let projects = state.projects;
     switch (action.type) {
-        case 'SET_PROJECTS':
+        case ProjectActionTypeKeys.SET_PROJECTS:
             return {
                 ...state,
                 projects: [...action.projects]
             };
-        case 'ADD_PROJECT':
+        case ProjectActionTypeKeys.ADD_PROJECT:
             return {
                 ...state,
                 projects: [
@@ -38,27 +38,20 @@ const projects = (state = { projects: new Array<ProjectType>(), modal: false }, 
                     action.project
                 ]
             };
-        case 'REMOVE_PROJECT':
-            // projects = state.projects.filter()
+        case ProjectActionTypeKeys.REMOVE_PROJECT:
             return {
                 ...state,
-                // projects: [
-                //     ...state.projects,
-                //     action.project
-                // ]
             };
-        case 'UPDATE_PROJECT':
+        case ProjectActionTypeKeys.UPDATE_PROJECT:
             return {
                 ...state,
-                // projects: tempTasks
-                // modal: false
             };
-        case 'OPEN_MODAL':
+        case ProjectActionTypeKeys.OPEN_MODAL:
             return {
                 ...state,
                 modal: true
             };
-        case 'CLOSE_MODAL':
+        case ProjectActionTypeKeys.CLOSE_MODAL:
             return {
                 ...state,
                 modal: false

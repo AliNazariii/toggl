@@ -1,16 +1,15 @@
 import { ProjectType } from '../../reducers/projects';
 import { AppDispatch } from '../../index';
-
-export const REMOVE_PROJECT = 'REMOVE_PROJECT';
+import { ProjectActionTypeKeys } from './index'; 
 
 export type RemoveProjectActionType = {
-    type: typeof REMOVE_PROJECT,
+    type: typeof ProjectActionTypeKeys.REMOVE_PROJECT,
     project: ProjectType
 };
 
 const remove = (project: ProjectType): RemoveProjectActionType => {
     return {
-        type: 'REMOVE_PROJECT',
+        type: ProjectActionTypeKeys.REMOVE_PROJECT,
         project: project
     };
 };
@@ -28,5 +27,5 @@ export const removeProject = (project: ProjectType) => {
         .then(response => console.log(response.text()))
         .catch(e => console.log(e))
         dispatch(remove(project));
-    }
+    };
 };

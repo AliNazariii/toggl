@@ -1,16 +1,15 @@
 import { TaskType } from '../../reducers/tasks';
 import { AppDispatch } from '../../index';
-
-export const ADD_TASK = 'ADD_TASK';
+import { TaskActionTypeKeys } from './index'; 
 
 export type AddTaskActionType = {
-    type: typeof ADD_TASK,
+    type: typeof TaskActionTypeKeys.ADD_TASK,
     task: TaskType
 };
 
 export const add = (task: TaskType): AddTaskActionType => {
     return {
-        type: 'ADD_TASK',
+        type: TaskActionTypeKeys.ADD_TASK,
         task: task
     };
 };
@@ -35,9 +34,9 @@ export const addTask = (start: string, duration: number, description: string) =>
         })
         .then(response => response.text())
         .then(result => {
-            let data: { data: TaskType } = JSON.parse(result)
+            let data: { data: TaskType } = JSON.parse(result);
             dispatch(add(data.data));
         })
         .catch(e => console.log(e))
-    }
-}
+    };
+};

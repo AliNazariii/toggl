@@ -11,7 +11,7 @@ function LogoContainer() {
             </div>
             <h3>Bale Toggl App</h3>
         </div>
-    )
-}
+    );
+};
 
 export default LogoContainer;

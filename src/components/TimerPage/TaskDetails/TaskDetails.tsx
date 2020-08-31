@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Styles from './TaskDetails.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes,faTrashAlt, faTag, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import { faTimes,faTrashAlt, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import { AppState } from '../../../reducers/index';
 import moment from 'moment';
 import { removeTask } from '../../../actions/tasks/remove';
@@ -25,7 +25,6 @@ const Details = () => {
     }
     useEffect(() => {
         if (state.taskDetails.isOpen) {
-            // inputRef.current?.focus();
             setValue(state.taskDetails.task.description)
         }
     }, [state.taskDetails.isOpen])
@@ -57,20 +56,6 @@ const Details = () => {
                 <h6>{moment.utc(state.taskDetails.task.duration * 1000).format('HH:mm:ss')}</h6>
             </div>
             <div className={Styles.OthersContainer}>
-                {/* <div className={Styles.OthersItemBlock}>    
-                    <FontAwesomeIcon 
-                        color="#8a8a8a"
-                        size="lg"
-                        icon={faTag} 
-                    />
-                    <select name="tags" multiple={true}>
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </div>
-                <div className={Styles.Divider} /> */}
                 <div 
                     className={Styles.OthersItemBlock}
                     onClick={() => dispatch(openModal())}
