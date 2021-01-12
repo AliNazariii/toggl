@@ -13,7 +13,7 @@ function LogoContainer({ icon }: LogoProps) {
             <div className={Styles.Logo}>
 			    <FontAwesomeIcon color="#ffffff" size="lg" icon={icon} />
             </div>
-            <h3>Bale Toggl App</h3>
+            <h3>Toggl</h3>
         </div>
     );
 };
