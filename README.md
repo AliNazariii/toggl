@@ -1,9 +1,6 @@
-## Toggl Client
+# Toggl Client
 
-Toggl is a time tracker developed with TypeScript and ReactJS.<br>
-You can start time entries with toggl and track or manage them.<br>
-Notice: This is a mobile-based client and connected to my real [Toggl](https://toggl.com/) account through [Toggl API](https://github.com/toggl/toggl_api_docs).<br>
-I had developed this project when I wanted to start learning TypeScript and Redux.
+Toggl is a time tracker developed with TypeScript and ReactJS. You can start time entries with Toggl and track or manage them. Please note that this is a mobile-based client connected to my real [Toggl](https://toggl.com/) account through [Toggl API](https://github.com/toggl/toggl_api_docs). I developed this project when I wanted to start learning TypeScript and Redux.
 
 ## Available Scripts
 
